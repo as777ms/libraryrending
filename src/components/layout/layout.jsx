@@ -9,47 +9,34 @@ const Layout = ({ hoopla }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const removeLink = (linkId) => {
-    document.getElementById(linkId).style.display = 'none';
-    navigate(`/${linkId}`);
-  }
+  const handleLogout = () => {
+    destroyToken();
+    navigate("/login");
+  };
 
   return (
     <>
       <header className='header'>
-        <div className="header-content">
-          <div className="logo"></div>
-          <nav className="nav">
-            <Link to="/" className='nav-link'>{t('Home')}</Link>
-            <Link id="what-to-choose" to="/posts" className='nav-link'>{t('What to choose')}</Link>
-            <Link to="/about" className='nav-link'>{t('About')}</Link>
-            <Button className="custom-button">
-              {t('Button Text')}
-            </Button>
-          </nav>
+        <div className="header-logo">
+          {/* Your logo image or text here */}
         </div>
+        <nav className="header-nav">
+          <Link to="/" className='nav-link home-link'>{t('Home')}</Link>
+          <Link to="/posts" className='nav-link'>{t('What to choose')}</Link>
+          <Link to="/about" className='nav-link'>{t('About')}</Link>
+          <Button className="custom-button">{t('Button Text')}</Button> 
+        </nav>
       </header>
 
       <nav className="category-nav">
-        <div className="logo-container">
-          <img src={hoopla} alt="" className="hoopla-logo" />
-        </div>
-        <div className="category-links">
-          <Link to="/books" className="category-link">{t('Books')}</Link>
-          <Link to="/audiobooks" className="category-link">{t('Audiobooks')}</Link>
-          <Link to="/news" className="category-link">{t('New Arrivals')}</Link>
-          <Link to="/topbooks" className="category-link">{t('Top Books')}</Link>
-          <Link to="/topaudiobooks" className="category-link">{t('Top Audiobooks')}</Link>
-          <button 
-            className="custom-button"
-            onClick={() => { destroyToken(); navigate("/login"); }}
-          >
-            {t('Log out')}
-          </button>
-        </div>
+        <Link to="/books" className="category-link">{t('Books')}</Link>
+        <Link to="/audiobooks" className="category-link">{t('Audiobooks')}</Link>
+        <Link to="/news" className="category-link">{t('New Arrivals')}</Link>
+        <Link to="/topbooks" className="category-link">{t('Top Books')}</Link>
+        <Link to="/topaudiobooks" className="category-link">{t('Top Audiobooks')}</Link>
       </nav>
 
-      <main className="container">
+      <main className="main-container">
         <Outlet />
       </main>
 
