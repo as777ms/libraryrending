@@ -35,6 +35,15 @@ const Perevod = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleCloseMenu}
+        // Add these props to prevent scrolling
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
       >
         {languages.map((lang) => (
           <MenuItem key={lang.code} onClick={() => handleLanguageChange(lang)}>

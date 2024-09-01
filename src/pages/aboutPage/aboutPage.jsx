@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const AboutPage = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="about-page" style={{
       backgroundColor: '#f8f9fa',
@@ -11,12 +14,12 @@ const AboutPage = () => {
         color: '#343a40',
         textAlign: 'center',
         marginBottom: '2rem',
-      }}>Welcome to My Awesome Site!</h1>
+      }}>{t('welcome_message')}</h1>
       <p style={{
         textAlign: 'center',
         color: '#6c757d',
         marginBottom: '2rem',
-      }}>Created by Anisa on {new Date().toLocaleDateString()}</p>
+      }}>{t('created_by', { date: new Date().toLocaleDateString() })}</p>
       <hr style={{
         borderColor: '#dee2e6',
         marginBottom: '2rem',
@@ -25,12 +28,12 @@ const AboutPage = () => {
       <h2 style={{
         color: '#343a40',
         marginBottom: '1rem',
-      }}>What is this site about?</h2>
+      }}>{t('about_title')}</h2>
       <p style={{
         color: '#6c757d',
         marginBottom: '2rem',
       }}>
-        This site is a treasure trove of free resources, where you can find a vast collection of
+        {t('about_description')}
         <ul style={{
           listStyle: 'disc',
           padding: '0 1.5rem',
@@ -38,89 +41,73 @@ const AboutPage = () => {
         }}>
           <li style={{
             color: '#343a40',
-          }}>Free books on various topics, from fiction to non-fiction</li>
+          }}>{t('bookss')}</li>
           <li style={{
             color: '#343a40',
-          }}>Free online courses to learn new skills and expand your knowledge</li>
+          }}>{t('courses')}</li>
           <li style={{
             color: '#343a40',
-          }}>Free software and tools to make your life easier</li>
+          }}>{t('software')}</li>
           <li style={{
             color: '#343a40',
-          }}>And many more surprises!</li>
+          }}>{t('surprises')}</li>
         </ul>
       </p>
 
       <h2 style={{
         color: '#343a40',
         marginBottom: '1rem',
-      }}>My Story</h2>
+      }}>{t('story_title')}</h2>
       <p style={{
         color: '#6c757d',
         marginBottom: '2rem',
       }}>
-        Hi, I'm Anisa, the creator of this site. I'm passionate about sharing knowledge and making
-        information accessible to everyone. As a curious and lifelong learner, I believe that
-        education should be free and available to all. That's why I created this site, to provide a
-        platform where people can come together to learn, grow, and share their experiences.
+        {t('story_description')}
       </p>
 
       <h2 style={{
         color: '#343a40',
         marginBottom: '1rem',
-      }}>What to Expect</h2>
+      }}>{t('expect_title')}</h2>
       <p style={{
         color: '#6c757d',
         marginBottom: '2rem',
       }}>
-        On this site, you can expect to find:
+        {t('expect_description')}
         <ul style={{
           listStyle: 'disc',
           padding: '0 1.5rem',
-          marginBottom: '1rem',
         }}>
           <li style={{
             color: '#343a40',
-          }}>Regularly updated content, including new books, courses, and resources</li>
+          }}>{t('regular_updates')}</li>
           <li style={{
             color: '#343a40',
-          }}>A community of like-minded individuals who share their knowledge and experiences</li>
+          }}>{t('community')}</li>
           <li style={{
             color: '#343a40',
-          }}>A safe and welcoming environment, free from ads and distractions</li>
-          <li style={{
-            color: '#343a40',
-          }}>And many more surprises, as I continue to add new features and content!</li>
+          }}>{t('safe_environment')}</li>
         </ul>
       </p>
 
       <h2 style={{
         color: '#343a40',
         marginBottom: '1rem',
-      }}>Get Involved</h2>
+      }}>{t('get_involved_title')}</h2>
       <p style={{
         color: '#6c757d',
         marginBottom: '2rem',
       }}>
-        Want to contribute to the site or suggest new resources? I'd love to hear from you! You can
-        contact me through the <a href="/contact" style={{
-          color: '#007bff',
-          textDecoration: 'underline',
-        }}>contact page</a> or join our community on
-        <a href="https://discord.com/invite/your-discord-invite" style={{
-          color: '#007bff',
-          textDecoration: 'underline',
-        }}>Discord</a>.
+        {t('get_involved_description')}
       </p>
 
-      <hr style={{
-        borderColor: '#dee2e6',
-        marginBottom: '2rem',
-      }} />
       <p style={{
         textAlign: 'center',
         color: '#6c757d',
-      }}>Thanks for stopping by, and I hope you enjoy exploring my site!</p>
+        marginTop: '2rem',
+      }}>
+        {t('thanks_message')}
+      </p>
     </div>
   );
 };

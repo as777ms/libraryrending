@@ -102,5 +102,24 @@
     "recommendedBooks": "Recommended Books",
     "advertisement": "Advertisement",
     "yourAdHere": "Your Ad Here!",
-    "onlyFromAudible": "Only from Maudible"  
+    "onlyFromAudible": "Only from Maudible",
+    "welcome_message": "Welcome to My Awesome Site!",
+    "created_by": "Created by Anisa on {{date}}",
+    "about_title": "What is this site about?",
+    "about_description": "This site is a treasure trove of free resources, where you can find a vast collection of:",
+    "story_title": "My Story",
+    "story_description": "Hi, I'm Anisa, the creator of this site. I'm passionate about sharing knowledge and making information accessible to everyone. As a curious and lifelong learner, I believe that education should be free and available to all. That's why I created this site, to provide a platform where people can come together to learn, grow, and share their experiences.",
+    "expect_title": "What to Expect",
+    "expect_description": "On this site, you can expect to find:",
+    "get_involved_title": "Get Involved",
+    "get_involved_description": "Want to contribute to the site or suggest new resources? I'd love to hear from you! You can contact me through the contact page or join our community on Discord.",
+    "thanks_message": "Thanks for stopping by, and I hope you enjoy exploring my site!",
+    "bookss": "Free books on various topics, from fiction to non-fiction",
+    "courses": "Free online courses to learn new skills and expand your knowledge",
+    "software": "Free software and tools to make your life easier",
+    "surprises": "And many more surprises!",
+    "regular_updates": "Regularly updated content, including new books, courses, and resources",
+    "community": "A community of like-minded individuals who share their knowledge and experiences",
+    "safe_environment": "A safe and welcoming environment, free from ads and distractions"
+  
 }

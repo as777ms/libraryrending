@@ -34,7 +34,7 @@
 [data-theme="dark"] {
     /* Dark Mode Colors */
     --background-gradient: linear-gradient(to bottom right, #032B44, #061a2b);
-    --text-color: white;
+    --text-color: rgb(210, 210, 210);
     --card-background: #1e1e1e;
     --header-color: #ffffff;
     --prime-background: #2e3b4e;
