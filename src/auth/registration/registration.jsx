@@ -1,80 +1,124 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import "./registration.css"
+import { useNavigate } from 'react-router-dom';  // Import useNavigate for redirection
 
 const Registration = () => {
-  const [username, setUsername] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState(''); 
+    const [formData, setFormData] = useState({
+        userName: '',
+        phoneNumber: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+    });
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    setError('');
-    const formData = { username, phoneNumber, email, password, confirmPassword };
+    const [error, setError] = useState('');
+    const navigate = useNavigate();  // Initialize useNavigate
 
-    try {
-      const response = await axios.post('http://135.181.152.249:8072/Account/register', formData);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
-      // Check if the registration was successful (e.g., status code 200 or 201)
-      if (response.status === 200 || response.status === 201) {
-        // Registration successful, redirect to login page
-        window.location.href = '/login';
-      } else {
-        // Handle other status codes or errors
-        setError('Registration failed. Please try again.');
-      }
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+    const handleRegistration = async (e) => {
+        e.preventDefault();
+        setError('');
 
-  const gotoLogin = () => {
-    window.location.href = '/login';
-  };
+        if (Object.values(formData).some(field => !field)) {
+            setError('All fields are required');
+            return;
+        }
 
-  return (
-    <div className='bgbgb'>
-      <h1>Join Our Library</h1>
-      <form onSubmit={handleRegister}>
-        <input 
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input 
-          type="text"
-          placeholder="Phone Number"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-        />
-        <input 
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input 
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <input 
-          type="password"
-          placeholder="Confirm Password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        {error && <p>{error}</p>}
-        <button type="submit">Register</button>
-        <button onClick={gotoLogin}>Go to Login Page</button>
-      </form>
-    </div>
-  );
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
+
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_API_LOGIN_URL_}`, formData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 200) {
+                console.log('Registration successful:', response.data);
+                navigate('/login');  // Redirect to the login page
+            } else {
+                setError('Registration failed');
+            }
+        } catch (err) {
+            if (err.response) {
+                console.error('Registration error:', err.response.data);
+                setError('Registration failed: ' + JSON.stringify(err.response.data));
+            } else {
+                console.error('Error:', err.message);
+                setError('An error occurred: ' + err.message);
+            }
+        }
+    };
+
+    return (
+        <div>
+            <h2>Register</h2>
+            <form onSubmit={handleRegistration}>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        name="userName"
+                        value={formData.userName}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Phone Number:</label>
+                    <input
+                        type="text"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div>
+                    <label>Confirm Password:</label>
+                    <input
+                        type="password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    );
 };
 
 export default Registration;

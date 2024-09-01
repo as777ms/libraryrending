@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
-import "./login.css"
+import "./login.css";
+
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -9,12 +10,12 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://135.181.152.249:8072/Account/login', {
+      const response = await axios.post(`${import.meta.env.VITE_API_LOGIN_URL}/Account/login`, {
         username,
         password,
       });
       if (response.status === 200) {
-        localStorage.setItem('access_token', response.data.token, "/");
+        localStorage.setItem('access_token', response.data.token);
         window.location.href = '/';
       } else {
         setIsRegistered(true);
