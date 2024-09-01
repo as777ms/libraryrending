@@ -55,9 +55,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 60px;
-    gap: 15px; /* Reduced gap for smaller screens */
-    background-color: #e9ecef;
+    margin-top: 80px;
+    gap: 15px; 
     flex-wrap: wrap; /* Allow category items to wrap */
 }
 
