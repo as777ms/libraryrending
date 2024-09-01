@@ -15,7 +15,7 @@
 }
 
 /* Responsive background for mobile devices (Android) */
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 480px) {
     .banner {
         background-image: url('./img/mobile.jpeg'); /* Replace with your mobile background image */
         width: 100%;
