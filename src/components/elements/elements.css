@@ -1,3 +1,4 @@
+/* General styles */
 .gradient-background {
     background: var(--background-gradient);
     color: var(--text-color);
@@ -10,12 +11,14 @@ h1, p {
     color: var(--text-color);
 }
 
+/* Flex container styling */
 .flex {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
 }
 
+/* Media queries for larger tablets and small desktops */
 @media (max-width: 900px) {
     .flex {
         flex-direction: column;
@@ -24,9 +27,11 @@ h1, p {
 
     .flex > div {
         margin-bottom: 20px;
+        width: 100%; /* Full width for items in a column layout */
     }
 }
 
+/* Media queries for tablets (typically between 600px and 900px) */
 @media (max-width: 768px) {
     h1 {
         font-size: 40px;
@@ -37,19 +42,42 @@ h1, p {
         margin-left: 0;
         text-align: center;
     }
-}
 
-@media (max-width: 480px) {
-    h1 {
-        font-size: 30px;
+    .gradient-background {
+        padding: 10px;
     }
 
     .flex {
         width: 100%;
-        padding: 0 20px;
     }
 
     .flex > div {
         width: 100%;
+    }
+}
+
+/* Media queries for phones (440px and below) */
+@media (max-width: 440px) {
+    h1 {
+        font-size: 30px;
+    }
+
+    p {
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .flex {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .flex > div {
+        width: 100%;
+    }
+
+    .gradient-background {
+        padding: 0 10px;
     }
 }
