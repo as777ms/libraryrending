@@ -1,0 +1,91 @@
+/* layout.css */
+
+.header {
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .nav-link {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .nav-link:hover {
+    color: #007BFF;
+  }
+  
+  .custom-button {
+    background-color: transparent;
+    border: 2px solid grey;
+    width: 130px;
+    height: 40px;
+    color: grey;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .category-nav {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logo-container {
+    width: 2%;
+  }
+  
+  .hoopla-logo {
+    width: 100%;
+    display: block;
+  }
+  
+  .category-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 20px;
+  }
+  
+  .category-link {
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .category-link:hover {
+    color: #007BFF;
+  }
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+  }

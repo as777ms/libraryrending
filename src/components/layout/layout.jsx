@@ -5,7 +5,7 @@ import Acordionfooter from '../acordionfooter/acordionfooter';
 import { destroyToken } from '../../utils/getToken';
 import { useTranslation } from 'react-i18next';
 
-const Layout = ({hoopla}) => {
+const Layout = ({ hoopla }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -17,37 +17,36 @@ const Layout = ({hoopla}) => {
   return (
     <>
       <header className='header'>
-        <div className="logo"></div>
-        <div className="nav">
-          <Link to="/" className='font-bold text-lg'>{t('Home')}</Link>
-          <Link id="what-to-choose" to="/posts">{t('What to choose')}</Link>
-          <Link to="/about" style={{ marginRight: "20px" }}>{t('About')}</Link>
-          <Button 
-            style={{
-              backgroundColor: "transparent", 
-              border: "2px solid grey", 
-              width: "130px", 
-              height: "40px", 
-              color: "grey", 
-              borderRadius: "10px", 
-              cursor: "pointer"
-            }}
-          >
-            {t('Button Text')}
-          </Button>
+        <div className="header-content">
+          <div className="logo"></div>
+          <nav className="nav">
+            <Link to="/" className='nav-link'>{t('Home')}</Link>
+            <Link id="what-to-choose" to="/posts" className='nav-link'>{t('What to choose')}</Link>
+            <Link to="/about" className='nav-link'>{t('About')}</Link>
+            <Button className="custom-button">
+              {t('Button Text')}
+            </Button>
+          </nav>
         </div>
       </header>
 
       <nav className="category-nav">
-        <div style={{width: "2%", marginTop: ""}}>
-          <img src={hoopla} alt="" style={{width: "100%"}}/>
+        <div className="logo-container">
+          <img src={hoopla} alt="" className="hoopla-logo" />
         </div>
-        <Link to={"/books"}>{t('Books')}</Link>
-        <Link to={"/audiobooks"}>{t('Audiobooks')}</Link>
-        <Link to={"/news"}>{t('New Arrivals')}</Link>
-        <Link to={"/topbooks"}>{t('Top Books')}</Link>
-        <Link to={"/topaudiobooks"}>{t('Top Audiobooks')}</Link>
-        <button style={{ margin: "", backgroundColor: "transparent", border: "2px solid grey", width: "130px", height: "40px", color: "grey", borderRadius: "10px", cursor: "pointer" }} onClick={() => { destroyToken(), navigate("/login") }}>{t('Log out')}</button>
+        <div className="category-links">
+          <Link to="/books" className="category-link">{t('Books')}</Link>
+          <Link to="/audiobooks" className="category-link">{t('Audiobooks')}</Link>
+          <Link to="/news" className="category-link">{t('New Arrivals')}</Link>
+          <Link to="/topbooks" className="category-link">{t('Top Books')}</Link>
+          <Link to="/topaudiobooks" className="category-link">{t('Top Audiobooks')}</Link>
+          <button 
+            className="custom-button"
+            onClick={() => { destroyToken(); navigate("/login"); }}
+          >
+            {t('Log out')}
+          </button>
+        </div>
       </nav>
 
       <main className="container">
