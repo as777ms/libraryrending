@@ -16,7 +16,7 @@
 @media screen and (max-width: 780px) {
     .banner {
         background-image: url('./img/mobile.jpeg'); /* Replace with your actual mobile background image URL */
-        width: 110%;
+        width: 116%;
         height: auto;
         margin-top: 0;
     }
