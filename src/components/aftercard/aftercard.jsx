@@ -11,18 +11,18 @@ const Aftercard = ({ bookheader, bookheader2, bookheader3 }) => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row h-auto md:h-[700px] gap-4 p-4 w-full md:w-[70%] m-auto mt-[50px]">
+    <div className="aftercard-container flex flex-col md:flex-row h-auto md:h-[700px] gap-4 p-4 w-full md:w-[70%] m-auto mt-[50px] overflow-x-hidden">
       {/* First Image with Text Overlay */}
       <div 
-        className="relative w-full md:w-1/2 h-64 md:h-full flex flex-col justify-center items-center" 
-        data-aos="fade-left"
+        className="aftercard-image relative w-full md:w-1/2 h-64 md:h-full flex flex-col justify-center items-center overflow-hidden" 
+        data-aos="fade-up"
       >
         <img 
           src={bookheader} 
           alt="Book Header" 
           className="h-full w-full object-cover rounded-md shadow-lg" 
         />
-        <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-md p-4">
+        <div className="aftercard-overlay absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-md p-4">
           <p className="text-white text-lg md:text-2xl font-semibold text-center">
             {t('discoverText')}
           </p>
@@ -38,16 +38,16 @@ const Aftercard = ({ bookheader, bookheader2, bookheader3 }) => {
 
       {/* Second and Third Images with Text Overlays */}
       <div 
-        className="w-full md:w-1/2 h-auto md:h-full flex flex-col md:justify-between gap-4" 
-        data-aos="fade-right"
+        className="aftercard-image-group w-full md:w-1/2 h-auto md:h-full flex flex-col md:justify-between gap-4 overflow-hidden" 
+        data-aos="fade-down"
       >
-        <div className="relative h-64 md:h-1/2 flex flex-col justify-center items-center">
+        <div className="aftercard-image relative h-64 md:h-1/2 flex flex-col justify-center items-center">
           <img 
             src={bookheader2} 
             alt="Book Header 2" 
             className="h-full w-full object-cover rounded-md shadow-lg" 
           />
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-md p-4">
+          <div className="aftercard-overlay absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-md p-4">
             <p className="text-white text-lg md:text-xl font-medium text-center">
               {t('enjoyReading')}
             </p>
@@ -61,13 +61,13 @@ const Aftercard = ({ bookheader, bookheader2, bookheader3 }) => {
           </div>
         </div>
 
-        <div className="relative h-64 md:h-1/2 flex flex-col justify-center items-center">
+        <div className="aftercard-image relative h-64 md:h-1/2 flex flex-col justify-center items-center">
           <img 
             src={bookheader3} 
             alt="Book Header 3" 
             className="h-full w-full object-cover rounded-md shadow-lg" 
           />
-          <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-md p-4">
+          <div className="aftercard-overlay absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 rounded-md p-4">
             <p className="text-white text-lg md:text-xl font-medium text-center">
               {t('downloadEase')}
             </p>
