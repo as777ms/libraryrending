@@ -47,7 +47,7 @@ const Slider = () => {
               slidesPerView: 3, // Adjust for small desktop view
             },
             // When window width is >= 1024px (large desktop)
-            1024: {
+            1800: {
               slidesPerView: 4, // Adjust for large desktop view
             }
           }}

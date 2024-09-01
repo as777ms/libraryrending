@@ -24,12 +24,12 @@ const Icons = () => {
     { icon: <BookIcon />, title: '642 000', description: t('books') },
     { icon: <HeadphonesIcon />, title: '280 000', description: t('audiobooks') },
     { icon: <StarIcon />, title: '+ 2 000', description: t('new_releases_monthly') },
-    { icon: <FavoriteIcon />, title: t('collections_recommendations'), description: '' },
-    { icon: <WifiIcon />, title: t('offline_online'), description: '' },
+    { icon: <FavoriteIcon />, title: t('collections_recommendations'), description: null },
+    { icon: <WifiIcon />, title: t('offline_online'), description: null },
   ];
 
   return (
-    <Grid container justifyContent="space-around" alignItems="center" sx={{ backgroundColor: '', py: 4, marginTop: "100px" }}>
+    <Grid container justifyContent="space-around" alignItems="center" sx={{ py: 4, marginTop: "100px" }}>
       {data.map((item, index) => (
         <Grid item key={index} textAlign="center" data-aos="fade-up" data-aos-delay={index * 100}>
           <Typography variant="h5" component="div" sx={{ mb: 1 }}>
@@ -38,9 +38,11 @@ const Icons = () => {
           <Typography variant="h6" component="div" sx={{ fontWeight: 'bold', mb: 0.5 }}>
             {item.title}
           </Typography>
-          <Typography variant="body2" component="div">
-            {item.description}
-          </Typography>
+          {item.description && (
+            <Typography variant="body2" component="div">
+              {item.description}
+            </Typography>
+          )}
         </Grid>
       ))}
     </Grid>

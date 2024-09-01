@@ -55,10 +55,10 @@ const FeatureCard = ({ icon: Icon, title, description, actionText }) => {
   );
 };
 
-const Cart = () => {
+const LibraryOverview = () => {
   return (
     <>
-      <div style={{ padding: '', backgroundColor: '' }}>
+      <div>
         <Typography variant="h3" component="div" align="center" gutterBottom>
           Welcome to Our Library
         </Typography>
@@ -127,4 +127,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default LibraryOverview;
