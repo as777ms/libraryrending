@@ -26,8 +26,7 @@ h1, p {
     }
 
     .flex > div {
-        margin-bottom: 20px;
-        width: 100%; /* Full width for items in a column layout */
+        width: 90%; /* Full width for items in a column layout */
     }
 }
 
@@ -38,13 +37,12 @@ h1, p {
     }
 
     p {
-        width: 100%;
+        width: 90%;
         margin-left: 0;
         text-align: center;
     }
 
     .gradient-background {
-        padding: 10px;
     }
 
     .flex {
@@ -70,7 +68,6 @@ h1, p {
 
     .flex {
         width: 100%;
-        padding: 0 10px;
     }
 
     .flex > div {
@@ -78,6 +75,5 @@ h1, p {
     }
 
     .gradient-background {
-        padding: 0 10px;
     }
 }

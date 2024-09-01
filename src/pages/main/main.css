@@ -1,10 +1,12 @@
+/* Reset margins for all elements */
 * {
     margin: 0;
 }
 
+/* Default Banner styling for large screens */
 .banner {
     background-image: url('./img/banner.jpg');
-    width: 121%;
+    width: 100%;
     height: 770px;
     background-repeat: no-repeat;
     margin-top: -260px;
@@ -13,15 +15,16 @@
 }
 
 /* Responsive background for mobile devices */
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 400px) {
     .banner {
         background-image: url('./img/mobile.jpeg'); /* Replace with your actual mobile background image URL */
-        width: 111%;
+        width: 100%;
         height: auto;
         margin-top: 0;
     }
 }
 
+/* Root variables for light and dark mode themes */
 :root {
     /* Light Mode Colors */
     --background-gradient: linear-gradient(to bottom right, #ffffff, #e6e6e6);
@@ -42,22 +45,134 @@
     --prime-text-color: white;
 }
 
+/* General styles */
 .gradient-background {
     background: var(--background-gradient);
     color: var(--text-color);
-    width: 121%;
-}
-
-.category-card {
-    background-color: var(--card-background);
-    color: var(--text-color);
-}
-
-.amazon-prime-container {
-    background-color: var(--prime-background);
-    color: var(--prime-text-color);
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 h1, p {
     color: var(--text-color);
+}
+
+/* Flex container styling */
+.flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+/* Media queries for laptops and large tablets (Max-width: 1200px) */
+@media (max-width: 1200px) {
+    .banner {
+        height: 650px;
+    }
+
+    h1 {
+        font-size: 45px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flex > div {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Media queries for tablets and smaller laptops (Max-width: 900px) */
+@media (max-width: 900px) {
+    .banner {
+        height: 550px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    p {
+        font-size: 14px;
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .flex {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .flex > div {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Media queries for tablets (Max-width: 768px) */
+@media (max-width: 768px) {
+    .banner {
+        height: 450px;
+    }
+
+    h1 {
+        font-size: 35px;
+    }
+
+    p {
+        font-size: 13px;
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .flex {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .flex > div {
+        width: 100%;
+    }
+}
+
+/* Media queries for phones (Max-width: 440px) */
+@media (max-width: 440px) {
+    .banner {
+        height: 350px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    p {
+        font-size: 12px;
+        width: 90%;
+        margin: 0 10px;
+        text-align: center;
+    }
+
+    .flex {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .flex > div {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
