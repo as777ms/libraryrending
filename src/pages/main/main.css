@@ -4,7 +4,7 @@
 
 .banner {
     background-image: url('./img/banner.jpg');
-    width: 100%;
+    width: 121%;
     height: 770px;
     background-repeat: no-repeat;
     margin-top: -260px;
@@ -45,7 +45,7 @@
 .gradient-background {
     background: var(--background-gradient);
     color: var(--text-color);
-    width: 100%;
+    width: 121%;
 }
 
 .category-card {
