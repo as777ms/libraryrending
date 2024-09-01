@@ -7,11 +7,11 @@ const Categorycard = () => {
 
   return (
     <>
-      <div className="" style={{width: "600px", margin: "auto", marginTop: "130px"}}>
-        <h1 style={{fontSize: "50px", fontWeight: "300", marginBottom: "1.25rem", lineHeight: "1.25", textAlign: "center"}}>
+      <div className="header-container">
+        <h1 className="header-title">
           {t('explore_new_worlds')}
         </h1>
-        <p style={{width: "500px", marginLeft: "90px", margin: "auto", textAlign: "center", fontSize: "20px"}}>
+        <p className="header-subtitle">
           {t('audiobooks_for_everyone')}
         </p>
       </div>
