@@ -44,13 +44,6 @@ const Elements = ({ prime, bookheader, bookheader2, bookheader3 }) => {
         <Aftercard bookheader={bookheader} bookheader2={bookheader2} bookheader3={bookheader3} />
         <Mapaftercard />
         <Categorycard />
-        <Aftercardsec bookheader={bookheader} bookheader2={bookheader2} />
-
-        <div className="flex mt-[100px]" style={{ maxWidth: "900px" }}>
-          <AnimatedCircularProgressBarDemo />
-          <AnimatedCircularProgressBarDemo />
-          <AnimatedCircularProgressBarDemo />
-        </div>
       </div>
     </>
   );
