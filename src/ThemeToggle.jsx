@@ -11,7 +11,17 @@ const ThemeToggle = () => {
   };
 
   return (
-    <Button variant="contained" onClick={toggleTheme} color={theme === 'light' ? 'primary' : 'secondary'}>
+    <Button 
+      variant="contained" 
+      sx={{
+        backgroundColor: theme === 'light' ? '#1976d2' : '#333',
+        color: theme === 'light' ? '#fff' : '#fff',
+        '&:hover': {
+          backgroundColor: theme === 'light' ? '#1565c0' : '#444',
+        }
+      }} 
+      onClick={toggleTheme}
+    >
       {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
     </Button>
   );

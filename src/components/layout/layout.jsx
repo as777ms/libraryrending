@@ -4,6 +4,7 @@ import Button from '../button/button';
 import Acordionfooter from '../acordionfooter/acordionfooter';
 import { destroyToken } from '../../utils/getToken';
 import { useTranslation } from 'react-i18next';
+import ThemeToggle from '../../ThemeToggle';
 
 const Layout = ({ hoopla }) => {
   const { t } = useTranslation();
@@ -24,7 +25,9 @@ const Layout = ({ hoopla }) => {
           <Link to="/" className='nav-link home-link'>{t('Home')}</Link>
           <Link to="/posts" className='nav-link'>{t('What to choose')}</Link>
           <Link to="/about" className='nav-link'>{t('About')}</Link>
-          <Button className="custom-button">{t('Button Text')}</Button> 
+          <Button className="custom-button">{t('Button Text')}</Button>
+          
+          <ThemeToggle /> 
         </nav>
       </header>
 

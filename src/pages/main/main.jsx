@@ -44,7 +44,6 @@ const Main = ({ hoopla, prime, bookheader, bookheader2, bookheader3 }) => {
           <ButtonR buttonText={t('button_text')} />
 
           <Perevod />
-          <ThemeToggle />
         </div>
       </div>
       <Elements
