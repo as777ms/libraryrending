@@ -1,16 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
-import "./drama.css";
-import * as THREE from 'three';
+import { useState, useEffect } from 'react';
 
 const Drama = () => {
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState('drama novel');
+  const [query, setQuery] = useState('drama news');
   const [books, setBooks] = useState([]);
   const [id, setId] = useState("");
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const containerRef = useRef();
 
   useEffect(() => {
     fetch(
@@ -20,7 +17,7 @@ const Drama = () => {
       .then((result) => {
         setBooks(result.items || []);
       })
-      .catch((error) => alert("Internet nadori fetch galtid"));
+      .catch((error) => alert("Error fetching data"));
   }, [query, currentPage]);
 
   const getSearch = (e) => {
@@ -43,169 +40,119 @@ const Drama = () => {
   const handleNext = () => setCurrentPage((prev) => prev + 1);
   const handlePrevious = () => setCurrentPage((prev) => prev - 1);
 
-  useEffect(() => {
-    // Initialize Three.js galaxy background
-    const initGalaxy = () => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      container.appendChild(renderer.domElement);
-
-      // Add galaxy effects here
-      // Example: Add a star field
-      const starsGeometry = new THREE.BufferGeometry();
-      const starsMaterial = new THREE.PointsMaterial({ color: 0x888888 });
-      const starVertices = [];
-
-      for (let i = 0; i < 10000; i++) {
-        const x = THREE.MathUtils.randFloatSpread(2000);
-        const y = THREE.MathUtils.randFloatSpread(2000);
-        const z = THREE.MathUtils.randFloatSpread(2000);
-        starVertices.push(x, y, z);
-      }
-
-      starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-      const starField = new THREE.Points(starsGeometry, starsMaterial);
-      scene.add(starField);
-
-      camera.position.z = 5;
-
-      const animate = () => {
-        requestAnimationFrame(animate);
-        starField.rotation.x += 0.0005;
-        starField.rotation.y += 0.0005;
-        renderer.render(scene, camera);
-      };
-
-      animate();
-
-      // Handle window resizing
-      const handleResize = () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      };
-
-      window.addEventListener('resize', handleResize);
-
-      // Cleanup on unmount
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        container.removeChild(renderer.domElement);
-      };
-    };
-
-    const cleanupHandler = initGalaxy();
-
-    return cleanupHandler;
-  }, []);
-
   return (
-    <div className="relative w-full min-h-screen text-white ml-[100px]">
-      <div ref={containerRef} className="absolute inset-0 z-0"></div>
-      <div className="relative z-10 w-full p-8 min-h-screen text-white">
-        <h1 className="text-6xl text-center font-bold text-cosmic-blue mb-8 neon-text">Drama</h1>
-        <div className="max-w-4xl mx-auto">
-          <form onSubmit={getSearch} className="flex justify-center mb-8">
-            <input
-              type="text"
-              placeholder="Search Book..."
-              className="w-full max-w-md p-4 border-2 border-cosmic-blue rounded-l-lg text-white bg-black bg-opacity-50 placeholder-cosmic-blue focus:outline-none focus:ring-4 focus:ring-cosmic-blue neon-text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="px-6 py-4 text-white font-semibold rounded-r-lg hover:bg-cosmic-blue-dark transition duration-300 neon-text"
-            >
-              Search
-            </button>
-          </form>
+    <div className="max-w-5xl mx-auto">
+      <h1 className="text-4xl font-extrabold mb-4 text-center">
+        Новые книги на сайте
+      </h1>
+      <p className="text-lg text-gray-700 mb-6 text-center">
+        Откройте для себя 50 новейших книг, добавленных на наш сайт!
+      </p>
 
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {books.length > 0 ? (
-              books.map((book, key) => (
-                <div
-                  key={key}
-                  className="bg-black bg-opacity-50 p-6 rounded-lg shadow-neon hover:shadow-neon-brighter transition-shadow duration-300 cosmic-card"
+      <p className="text-lg text-gray-700 leading-relaxed mb-8">
+        В этом разделе вы найдете свежие поступления нашей электронной библиотеки. Мы постоянно обновляем нашу коллекцию, 
+        чтобы предложить вам самые актуальные новинки литературного мира. Независимо от того, интересуетесь ли вы художественной 
+        литературой, нон-фикшеном, биографиями или поэзией – здесь вы найдете что-то по душе.
+      </p>
+
+      <p className="text-lg text-gray-700 leading-relaxed mt-5">
+        Читайте онлайн или скачивайте книги, чтобы наслаждаться ими на вашем устройстве в любое удобное время, даже без подключения к интернету.
+      </p>
+
+      <p className="text-lg text-gray-700 leading-relaxed mt-5">
+        Установите наше мобильное приложение для удобного чтения на смартфоне или планшете. С нами вы всегда будете в курсе последних литературных тенденций и сможете открыть для себя новых авторов.
+      </p>
+
+      <form onSubmit={getSearch} className="flex justify-center mb-8">
+        <input
+          type="text"
+          placeholder="Search Book..."
+          className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-blue-400 text-white rounded-r-md px-4 py-2 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Search
+        </button>
+      </form>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {books.length > 0 ? (
+          books.map((book, key) => (
+            <div key={key} className="bg-white p-4 rounded-lg shadow-md">
+              <img
+                src={
+                  book?.volumeInfo?.imageLinks
+                    ? Object.values(book.volumeInfo.imageLinks)[0]
+                    : ""
+                }
+                alt="cover img"
+                className="w-full h-60 object-cover rounded-lg mb-4"
+              />
+              <div className="flex justify-between items-center">
+                <a
+                  href={book.volumeInfo.previewLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:underline"
                 >
-                  <img
-                    src={
-                      book?.volumeInfo?.imageLinks
-                        ? Object.values(book.volumeInfo.imageLinks)[0]
-                        : ""
-                    }
-                    alt="cover img"
-                    className="w-full h-64 object-cover rounded-md mb-4 border border-cosmic-blue"
-                  />
-                  <div className="flex justify-between items-center">
-                    <a
-                      href={book.volumeInfo.previewLink}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-4 py-2 bg-cosmic-blue text-black font-semibold rounded hover:bg-cosmic-blue-dark transition duration-300 cosmic-button"
-                    >
-                      Preview
-                    </a>
-                    {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
-                      <button
-                        className="px-4 py-2 bg-cosmic-green text-black font-semibold rounded hover:bg-cosmic-green-dark transition duration-300 cosmic-button"
-                        onClick={() => checkIt(book?.id)}
-                      >
-                        Read Online
-                      </button>
-                    ) : (
-                      <h3 className="text-red-500 font-semibold">Not Available</h3>
-                    )}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p className="text-white text-center">No books found.</p>
-            )}
-          </div>
-
-          {/* Pagination */}
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={handlePrevious}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 mx-2 bg-white text-black font-semibold rounded-lg hover:bg-cosmic-blue-dark transition duration-300 cosmic-button ${currentPage === 1 && 'opacity-50 cursor-not-allowed'}`}
-            >
-              Previous
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={books.length < itemsPerPage}
-              className={`px-4 py-2 mx-2 bg--blue text-black font-semibold rounded-lg hover:bg-cosmic-blue-dark transition duration-300 cosmic-button ${books.length < itemsPerPage && 'opacity-50 cursor-not-allowed'}`}
-            >
-              Next
-            </button>
-          </div>
-
-          {term && (
-            <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 cosmic-overlay">
-              <div className="relative w-full max-w-4xl bg-black p-8 rounded-lg shadow-neon cosmic-modal">
-                <button
-                  className="absolute top-4 right-4 bg-red-500 text-white font-bold rounded-full p-2 hover:bg-red-700 transition duration-300 cosmic-button"
-                  onClick={() => setTerm(false)}
-                >
-                  X
-                </button>
-                <iframe
-                  src={`https://books.google.com.pk/books?id=${id}&lpg=PP1&pg=PP1&output=embed`}
-                  title="Pdf Viewer"
-                  className="w-full h-96 rounded-lg cosmic-iframe"
-                ></iframe>
+                  Preview
+                </a>
+                {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
+                  <button
+                    className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
+                    onClick={() => checkIt(book?.id)}
+                  >
+                    Read Online
+                  </button>
+                ) : (
+                  <h3 className="text-gray-600">Not Available</h3>
+                )}
               </div>
             </div>
-          )}
-        </div>
+          ))
+        ) : (
+          <p className="text-gray-600 text-center col-span-full">No books found.</p>
+        )}
       </div>
+
+      <div className="flex justify-between mt-8">
+        <button
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+          className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={books.length < itemsPerPage}
+          className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
+
+      {term && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75">
+          <div className="relative w-full max-w-4xl p-8 bg-white rounded-lg">
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600"
+              onClick={() => setTerm(false)}
+            >
+              X
+            </button>
+            <iframe
+              src={`https://books.google.com.pk/books?id=${id}&lpg=PP1&pg=PP1&output=embed`}
+              title="Pdf Viewer"
+              className="w-full h-96 rounded-lg"
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

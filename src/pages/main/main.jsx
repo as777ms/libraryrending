@@ -23,6 +23,7 @@ const Main = ({ hoopla, prime, bookheader, bookheader2, bookheader3 }) => {
           }}
         >
           <div style={{ width: "10%", marginTop: "170px" }}></div>
+          
         </div>
         <div
           style={{
@@ -36,6 +37,10 @@ const Main = ({ hoopla, prime, bookheader, bookheader2, bookheader3 }) => {
             backgroundPosition: "center",
           }}
         >
+
+        <h1 className="slider-title">
+          <span className="title-highlight">{t('onlyFromAudible')}</span>
+        </h1>
           <ButtonR buttonText={t('button_text')} />
 
           <Perevod />

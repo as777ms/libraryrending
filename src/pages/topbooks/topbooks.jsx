@@ -1,38 +1,34 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import VKIcon from '@mui/icons-material/Facebook'; // Replace with actual VK icon
+import VKIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
 const Topbooks = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState('top books'); 
+  const [query, setQuery] = useState('news');
   const [books, setBooks] = useState([]);
   const [id, setId] = useState("");
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const [filterType, setFilterType] = useState('all');
-  const [filterSubscription, setFilterSubscription] = useState('all');
-  const [filterLanguage, setFilterLanguage] = useState('all');
 
   useEffect(() => {
-    let apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}`;
-
-    if (filterType !== 'all') {
-      apiUrl += `&filter=${filterType}`;
-    }
-
-    fetch(apiUrl)
+    fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}&key=AIzaSyCJbUF_JRiOk9R6abyiAZ3QddT6TQ_LAO0`
+    )
       .then((res) => res.json())
       .then((result) => {
         setBooks(result.items || []);
       })
-      .catch((error) => alert("internet nadori fetch galtid"));
-  }, [query, currentPage, filterType, filterSubscription, filterLanguage]);
+      .catch((error) => alert("Error fetching data"));
+  }, [query, currentPage]);
 
   const getSearch = (e) => {
     e.preventDefault();
+
     if (search !== '') {
       setQuery(search);
       setSearch('');
@@ -54,17 +50,17 @@ const Topbooks = () => {
     <>
       <div className="max-w-5xl mx-auto p-8">
         <h1 className="text-4xl font-extrabold mb-4 text-center">
-          Подборки самых популярных книг
+          {t('topBooksTitle')}
         </h1>
-        <p className="text-xl text-gray-700 mb-6 text-center">103 подборки</p>
+        <p className="text-xl text-gray-700 mb-6 text-center">{t('collectionsCount')}</p>
         <p className="text-lg text-gray-700 leading-relaxed mb-8">
-          На этой странице представлены 103 подборок самых рейтинговых книг электронной библиотеки MyBook. Подборки составляются каждый месяц, что позволит каждому читателю найти книгу по своему вкусу. Читайте самые популярные книги прямо на сайте или установите наше удобное приложение, чтобы не расставаться с любимыми произведениями даже при отсутствии подключения к интернету!
+          {t('description')}
         </p>
 
         <form onSubmit={getSearch} className="flex justify-center mb-8">
           <input
             type="text"
-            placeholder="Search Book..."
+            placeholder={t('searchPlaceholder')}
             className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -73,7 +69,7 @@ const Topbooks = () => {
             type="submit"
             className="bg-blue-400 text-white rounded-r-md px-4 py-2 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            Search
+            {t('searchButton')}
           </button>
         </form>
 
@@ -87,7 +83,7 @@ const Topbooks = () => {
                       ? Object.values(book.volumeInfo.imageLinks)[0]
                       : ""
                   }
-                  alt="cover img"
+                  alt={t('coverImage')}
                   className="w-full h-60 object-cover rounded-lg mb-4"
                 />
                 <div className="flex justify-between items-center">
@@ -97,23 +93,23 @@ const Topbooks = () => {
                     rel="noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    Preview
+                    {t('preview')}
                   </a>
                   {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
                     <button
                       className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
                       onClick={() => checkIt(book?.id)}
                     >
-                      Read Online
+                      {t('readOnline')}
                     </button>
                   ) : (
-                    <h3 className="text-gray-600">Not Available</h3>
+                    <h3 className="text-gray-600">{t('notAvailable')}</h3>
                   )}
                 </div>
               </div>
             ))
           ) : (
-            <p className="text-gray-600 text-center col-span-full">No books found.</p>
+            <p className="text-gray-600 text-center col-span-full">{t('noBooksFound')}</p>
           )}
         </div>
 
@@ -123,14 +119,14 @@ const Topbooks = () => {
             disabled={currentPage === 1}
             className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
           >
-            Previous
+            {t('previous')}
           </button>
           <button
             onClick={handleNext}
             disabled={books.length < itemsPerPage}
             className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
           >
-            Next
+            {t('next')}
           </button>
         </div>
 
@@ -145,7 +141,7 @@ const Topbooks = () => {
               </button>
               <iframe
                 src={`https://books.google.com.pk/books?id=${id}&lpg=PP1&pg=PP1&output=embed`}
-                title="Pdf Viewer"
+                title={t('pdfViewer')}
                 className="w-full h-96 rounded-lg"
               ></iframe>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 const ThemeToggle = () => {
   const [theme, setTheme] = React.useState('light');
@@ -10,9 +11,9 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button onClick={toggleTheme}>
+    <Button variant="contained" onClick={toggleTheme} color={theme === 'light' ? 'primary' : 'secondary'}>
       {theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-    </button>
+    </Button>
   );
 };
 
