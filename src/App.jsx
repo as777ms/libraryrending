@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ProtectedRoute from "./utils/ProtectedRoute";
+// import ProtectedRoute from "./utils/ProtectedRoute";
 import Main from "./pages/main/main";
 import Login from "./auth/login/login";
 import Registration from "./auth/registration/registration";
@@ -43,9 +43,7 @@ const App = () => {
           <Route 
             path="/" 
             element={
-              <ProtectedRoute>
                 <Main hoopla={hoopla} prime={prime} bookheader={bookheader} bookheader2={bookheader2} bookheader3={bookheader3}/>
-              </ProtectedRoute>
             } 
           />
           <Route path="/:id" element={<InfoBook hoopla={hoopla} />} />
