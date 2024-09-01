@@ -31,7 +31,7 @@ h1, p {
 }
 
 /* Media queries for tablets (typically between 600px and 900px) */
-@media (max-width: 768px) {
+@media (max-width: 780px) {
     h1 {
         font-size: 40px;
     }
