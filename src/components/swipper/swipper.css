@@ -1,0 +1,29 @@
+.swiper {
+    width: 80%;
+    height: 300px; 
+    position: relative;
+}
+
+.swiper-slide {
+    /* Remove default margins and paddings */
+    margin: 0; 
+    padding: 0;
+    /* Ensure slides take up full available space */
+    width: 300px; /* Adjust as needed */ 
+}
+
+.card {
+    width: 100%; /* Take up full width of the slide */
+    height: 90%; 
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* ... (rest of your CSS) ... */

@@ -1,0 +1,60 @@
+.mapaftercard-container {
+    text-align: center;
+    margin-top: 100px;
+    width: 70%;
+    margin: auto;
+  }
+  
+  .mapaftercard-title {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: grey;
+  }
+  
+  .mapaftercard-subtitle {
+    font-size: 1.1rem;
+    color: grey;
+  }
+  
+  .mapaftercard-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .mapaftercard-item {
+    margin: 10px;
+    width: 100%;
+  }
+  
+  .mapaftercard-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .mapaftercard-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .mapaftercard-item-title {
+    font-size: 1.2rem;
+    color: black;
+  }
+  
+  @media (min-width: 600px) {
+    .mapaftercard-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 900px) {
+    .mapaftercard-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }

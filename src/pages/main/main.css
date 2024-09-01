@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+}
+
+.banner {
+    background-image: url('./img/banner.jpg');
+    width: 121%;
+    height: 770px;
+    background-repeat: no-repeat;
+    margin-top: -260px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Responsive background for mobile devices */
+@media screen and (max-width: 768px) {
+    .banner {
+        background-image: url('./img/mobile.jpeg'); /* Replace with your actual mobile background image URL */
+        width: 120%;
+        height: auto;
+        margin-top: 0;
+    }
+}
+
+:root {
+    /* Light Mode Colors */
+    --background-gradient: linear-gradient(to bottom right, #ffffff, #e6e6e6);
+    --text-color: black;
+    --card-background: #f0f0f0;
+    --header-color: #343a40;
+    --prime-background: #d6e0f0;
+    --prime-text-color: black;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Colors */
+    --background-gradient: linear-gradient(to bottom right, #032B44, #061a2b);
+    --text-color: white;
+    --card-background: #1e1e1e;
+    --header-color: #ffffff;
+    --prime-background: #2e3b4e;
+    --prime-text-color: white;
+}
+
+.gradient-background {
+    background: var(--background-gradient);
+    color: var(--text-color);
+    width: 121%;
+}
+
+.category-card {
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+.amazon-prime-container {
+    background-color: var(--prime-background);
+    color: var(--prime-text-color);
+}
+
+h1, p {
+    color: var(--text-color);
+}

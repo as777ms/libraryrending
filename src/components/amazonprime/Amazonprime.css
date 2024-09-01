@@ -1,0 +1,23 @@
+.notification-banner {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .prime-logo img {
+    width: 50px;
+    margin-right: 20px;
+  }
+  
+  .notification-text {
+    font-size: 1rem;
+  }
+  
+  .notification-text strong {
+    display: block;
+    font-size: 1.1rem;
+  }

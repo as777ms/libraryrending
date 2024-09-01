@@ -1,0 +1,40 @@
+:root {
+        --background-gradient: linear-gradient(to bottom right, #ecf0f1, #e7eaf1, #e3e8f1, #dee3f1, #d9dff1, #d5dcf1, #d1daf1, #cdcfd1, #c8cacd, #c2c5cc, #bdbec4, #b7bbc3, #b3b7c2, #afb1c1, #a8abc0, #a2a5be, #9c9fbd, #9693bc, #9190bb, #8b89b9, #8684b8, #8281b6, #7d7ab5, #7774b3, #7270b1, #6c68af, #6661ae, #6160ac);
+
+    --text-color: black;
+    --card-background: #f0f0f0;
+    --header-color: #343a40;
+    --prime-background: #d6e0f0;
+    --prime-text-color: black;
+}
+
+[data-theme="dark"] {
+    --background-gradient: linear-gradient(to bottom right, #032B44, #061a2b);
+    --text-color: white;
+    --card-background: #333;
+    --header-color: #ffffff;
+    --prime-background: #2e3b4e;
+    --prime-text-color: white;
+}
+
+.gradient-background {
+    background: var(--background-gradient);
+    color: var(--text-color);
+    width: 120%;
+    height: 3000px;
+}
+
+.category-card {
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+.amazon-prime-container {
+    background-color: var(--prime-background);
+    color: var(--prime-text-color);
+}
+
+h1, p {
+    color: var(--text-color);
+}
+

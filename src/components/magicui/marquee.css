@@ -1,0 +1,35 @@
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.marquee.reverse {
+  animation: marqueeReverse var(--duration, 20s) linear infinite;
+}
+
+.marquee:not(.reverse) {
+  animation: marquee var(--duration, 20s) linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes marqueeReverse {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
