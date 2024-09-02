@@ -36,7 +36,6 @@ const Layout = ({ hoopla }) => {
         <Link to="/audiobooks" className="category-link">{t('Audiobooks')}</Link>
         <Link to="/news" className="category-link">{t('New Arrivals')}</Link>
         <Link to="/topbooks" className="category-link">{t('Top Books')}</Link>
-        <Link to="/topaudiobooks" className="category-link">{t('Top Audiobooks')}</Link>
       </nav>
 
       <main className="main-container">
