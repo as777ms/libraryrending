@@ -131,5 +131,11 @@
   "notAvailable": "Дастнорас",
   "noBooksFound": "Китобҳо ёфт нашуданд.",
   "previous": "Қаблӣ",
-  "next": "Баъдӣ"
+  "next": "Баъдӣ",
+  "contact_title": "Тамос",
+  "contact_description": "Шумо метавонед бо ман дар платформаҳои зерин пайваст шавед:",
+  "discord_link": "Ба ман дар Discord ҳамроҳ шавед",
+  "telegram_link": "Маро дар Telegram пайравӣ кунед",
+  "github_link": "GitHub-и маро санҷед"
+
 }

@@ -131,6 +131,11 @@
   "notAvailable": "Not Available",
   "noBooksFound": "No books found.",
   "previous": "Previous",
-  "next": "Next"
+  "next": "Next",
+  "contact_title": "Contact",
+  "contact_description": "You can connect with me on the following platforms:",
+  "discord_link": "Join me on Discord",
+  "telegram_link": "Follow me on Telegram",
+  "github_link": "Check out my GitHub"
   
 }

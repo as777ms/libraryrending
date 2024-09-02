@@ -101,6 +101,41 @@ const AboutPage = () => {
         {t('get_involved_description')}
       </p>
 
+      <h2 style={{
+        color: '#343a40',
+        marginBottom: '1rem',
+      }}>{t('contact_title')}</h2>
+      <p style={{
+        color: '#6c757d',
+        marginBottom: '1rem',
+      }}>
+        {t('contact_description')}
+      </p>
+      <ul style={{
+        listStyle: 'none',
+        padding: '0',
+        textAlign: 'center',
+      }}>
+        <li>
+          <a href="https://discordapp.com/users/1229349663925075989" style={{
+            color: '#007bff',
+            textDecoration: 'none',
+          }}>{t('discord_link')}</a>
+        </li>
+        <li>
+          <a href="https://t.me/as77ms" style={{
+            color: '#007bff',
+            textDecoration: 'none',
+          }}>{t('telegram_link')}</a>
+        </li>
+        <li>
+          <a href="https://github.com/as777ms" style={{
+            color: '#007bff',
+            textDecoration: 'none',
+          }}>{t('github_link')}</a>
+        </li>
+      </ul>
+
       <p style={{
         textAlign: 'center',
         color: '#6c757d',
