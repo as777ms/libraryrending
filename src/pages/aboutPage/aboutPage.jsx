@@ -5,142 +5,61 @@ const AboutPage = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="about-page" style={{
-      backgroundColor: '#f8f9fa',
-      padding: '2rem',
-      fontFamily: 'Arial, sans-serif',
-    }}>
-      <h1 style={{
-        color: '#343a40',
-        textAlign: 'center',
-        marginBottom: '2rem',
-      }}>{t('welcome_message')}</h1>
-      <p style={{
-        textAlign: 'center',
-        color: '#6c757d',
-        marginBottom: '2rem',
-      }}>{t('created_by', { date: new Date().toLocaleDateString() })}</p>
-      <hr style={{
-        borderColor: '#dee2e6',
-        marginBottom: '2rem',
-      }} />
+    <div className="about-page-container">
+      <h1 className="about-page-title">{t('welcome_message')}</h1>
+      <p className="about-page-subtitle">
+        {t('created_by', { date: new Date().toLocaleDateString() })}
+      </p>
+      <hr className="about-page-divider" />
 
-      <h2 style={{
-        color: '#343a40',
-        marginBottom: '1rem',
-      }}>{t('about_title')}</h2>
-      <p style={{
-        color: '#6c757d',
-        marginBottom: '2rem',
-      }}>
+      <h2 className="about-section-title">{t('about_title')}</h2>
+      <p className="about-section-description">
         {t('about_description')}
-        <ul style={{
-          listStyle: 'disc',
-          padding: '0 1.5rem',
-          marginBottom: '1rem',
-        }}>
-          <li style={{
-            color: '#343a40',
-          }}>{t('bookss')}</li>
-          <li style={{
-            color: '#343a40',
-          }}>{t('courses')}</li>
-          <li style={{
-            color: '#343a40',
-          }}>{t('software')}</li>
-          <li style={{
-            color: '#343a40',
-          }}>{t('surprises')}</li>
+        <ul className="about-item-list">
+          <li className="about-list-item">{t('bookss')}</li>
+          <li className="about-list-item">{t('courses')}</li>
+          <li className="about-list-item">{t('software')}</li>
+          <li className="about-list-item">{t('surprises')}</li>
         </ul>
       </p>
 
-      <h2 style={{
-        color: '#343a40',
-        marginBottom: '1rem',
-      }}>{t('story_title')}</h2>
-      <p style={{
-        color: '#6c757d',
-        marginBottom: '2rem',
-      }}>
+      <h2 className="about-section-title">{t('story_title')}</h2>
+      <p className="about-section-description">
         {t('story_description')}
       </p>
 
-      <h2 style={{
-        color: '#343a40',
-        marginBottom: '1rem',
-      }}>{t('expect_title')}</h2>
-      <p style={{
-        color: '#6c757d',
-        marginBottom: '2rem',
-      }}>
+      <h2 className="about-section-title">{t('expect_title')}</h2>
+      <p className="about-section-description">
         {t('expect_description')}
-        <ul style={{
-          listStyle: 'disc',
-          padding: '0 1.5rem',
-        }}>
-          <li style={{
-            color: '#343a40',
-          }}>{t('regular_updates')}</li>
-          <li style={{
-            color: '#343a40',
-          }}>{t('community')}</li>
-          <li style={{
-            color: '#343a40',
-          }}>{t('safe_environment')}</li>
+        <ul className="about-item-list">
+          <li className="about-list-item">{t('regular_updates')}</li>
+          <li className="about-list-item">{t('community')}</li>
+          <li className="about-list-item">{t('safe_environment')}</li>
         </ul>
       </p>
 
-      <h2 style={{
-        color: '#343a40',
-        marginBottom: '1rem',
-      }}>{t('get_involved_title')}</h2>
-      <p style={{
-        color: '#6c757d',
-        marginBottom: '2rem',
-      }}>
+      <h2 className="about-section-title">{t('get_involved_title')}</h2>
+      <p className="about-section-description">
         {t('get_involved_description')}
       </p>
 
-      <h2 style={{
-        color: '#343a40',
-        marginBottom: '1rem',
-      }}>{t('contact_title')}</h2>
-      <p style={{
-        color: '#6c757d',
-        marginBottom: '1rem',
-      }}>
+      <h2 className="about-section-title">{t('contact_title')}</h2>
+      <p className="about-section-description">
         {t('contact_description')}
       </p>
-      <ul style={{
-        listStyle: 'none',
-        padding: '0',
-        textAlign: 'center',
-      }}>
+      <ul className="about-contact-list">
         <li>
-          <a href="https://discordapp.com/users/1229349663925075989" style={{
-            color: '#007bff',
-            textDecoration: 'none',
-          }}>{t('discord_link')}</a>
+          <a href="https://discordapp.com/users/1229349663925075989" className="about-contact-link">{t('discord_link')}</a>
         </li>
         <li>
-          <a href="https://t.me/as77ms" style={{
-            color: '#007bff',
-            textDecoration: 'none',
-          }}>{t('telegram_link')}</a>
+          <a href="https://t.me/as77ms" className="about-contact-link">{t('telegram_link')}</a>
         </li>
         <li>
-          <a href="https://github.com/as777ms" style={{
-            color: '#007bff',
-            textDecoration: 'none',
-          }}>{t('github_link')}</a>
+          <a href="https://github.com/as777ms" className="about-contact-link">{t('github_link')}</a>
         </li>
       </ul>
 
-      <p style={{
-        textAlign: 'center',
-        color: '#6c757d',
-        marginTop: '2rem',
-      }}>
+      <p className="about-page-footer">
         {t('thanks_message')}
       </p>
     </div>

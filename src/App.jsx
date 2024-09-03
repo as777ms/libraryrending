@@ -1,36 +1,39 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { lazy } from "react";
+import "./App.css";
 // import ProtectedRoute from "./utils/ProtectedRoute";
-import Main from "./pages/main/main";
 import Login from "./auth/login/login";
 import Registration from "./auth/registration/registration";
 import hoopla from "./assets/img/hoopla.png";
-import InfoBook from "./pages/infoBook/infoBook";
 import prime from "./assets/img/prime.png";
 import { Layout } from "./components/layout/layout";
-import PostPage from "./pages/postPage/postPage";
-import AboutPage from "./pages/aboutPage/aboutPage";
-import InfoSlider from "./pages/infoSlider/infoSlider";
-import Love from "./pages/love/love";
-import Drama from "./pages/drama/drama";
-import Fiction from "./pages/fiction/fiction";
-import Thriller from "./pages/thriller/thriller";
-import Fantasy from "./pages/fantasy/fantasy";
-import Mystery from "./pages/mystery/mystery";
-import Biography from "./pages/biography/biography";
-import Horror from "./pages/horror/horror";
-import Historical from "./pages/historical/historical";
-import Comedy from "./pages/comedy/comedy";
-import Adventure from "./pages/adventure/adventure";
-import Selfhelp from "./pages/selfhelp/selfhelp";
-import Books from "./pages/books/books";
-import Audiobooks from "./pages/audiobooks/audiobooks";
-import News from "./pages/news/news";
-import Topbooks from "./pages/topbooks/topbooks";
-import Topaudiobooks from "./pages/topaudiobooks/topaudiobooks";
-import Infobooksbyid from "./pages/infobooksbyid/infobooksbyid";
 import bookheader from "./assets/img/bookheader.jpeg";
 import bookheader2 from "./assets/img/bookheader2.jpeg";
 import bookheader3 from "./assets/img/bookheader3.jpeg"
+const Main = lazy(()=>import('./pages/main/main'))
+const InfoBook = lazy(()=>import('./pages/infoBook/infoBook'))
+const InfoSlider = lazy(()=>import('./pages/infoSlider/infoSlider'))
+const PostPage = lazy(()=>import('./pages/postPage/postPage'))
+const AboutPage = lazy(()=>import('./pages/aboutPage/aboutPage'))
+const Love = lazy(()=>import('./pages/love/love'))
+const Drama = lazy(()=>import('./pages/drama/drama'))
+const Fiction = lazy(()=>import('./pages/fiction/fiction'))
+const Thriller = lazy(()=>import('./pages/thriller/thriller'))
+const Fantasy = lazy(()=>import('./pages/fantasy/fantasy'))
+const Mystery = lazy(()=>import('./pages/mystery/mystery'))
+const Biography = lazy(()=>import('./pages/biography/biography'))
+const Horror = lazy(()=>import('./pages/horror/horror'))
+const Historical = lazy(()=>import('./pages/historical/historical'))
+const Comedy = lazy(()=>import('./pages/comedy/comedy'))
+const Adventure = lazy(()=>import('./pages/adventure/adventure'))
+const Selfhelp = lazy(()=>import('./pages/selfhelp/selfhelp'))
+const Books = lazy(()=>import('./pages/books/books'))
+const Audiobooks = lazy(()=>import('./pages/audiobooks/audiobooks'))
+const News = lazy(()=>import('./pages/news/news'))
+const Topbooks = lazy(()=>import('./pages/topbooks/topbooks'))
+const Topaudiobooks = lazy(()=>import('./pages/topaudiobooks/topaudiobooks'))
+const Infobooksbyid = lazy(()=>import('./pages/infobooksbyid/infobooksbyid'))
+
 const App = () => {
   return (
     <>

@@ -1,15 +1,14 @@
 /* infoBook.css */
 
 .main {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(./banner.jpg);
+    background-image: url(./banner.jpg);
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    width: 121.14%;
+    width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    /* padding: 20px; */
     font-family: 'Poppins', sans-serif;
     animation: fadeIn 0.5s ease-in-out;
   }

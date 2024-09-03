@@ -41,6 +41,20 @@
     --prime-text-color: white;
 }
 
+
+.slider-title {
+    font-size: 50px;
+    font-weight: 300;
+    margin-bottom: 1.25rem;
+    line-height: 1.25;
+  }
+  
+  .title-highlight {
+    color: #3498db;
+    font-weight: 600;
+  }
+  
+
 /* General styles */
 .gradient-background {
     background: var(--background-gradient);
@@ -172,3 +186,29 @@ h1, p {
         margin-bottom: 20px;
     }
 }
+
+
+
+@media (max-width: 1024px) {
+    .slider-title {
+      font-size: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .slider-title {
+      font-size: 30px;
+    }
+    .slider-description {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .slider-title {
+      font-size: 25px;
+    }
+    .slider-description {
+      font-size: 14px;
+    }
+  }

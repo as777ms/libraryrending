@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const News = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('thriller');
   const [books, setBooks] = useState([]);
@@ -28,7 +30,7 @@ const News = () => {
       setSearch('');
       setCurrentPage(1);
     } else {
-      alert('Enter Book Name!!');
+      alert(t('Enter Book Name!!'));
     }
   };
 
@@ -43,30 +45,28 @@ const News = () => {
   return (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-4xl font-extrabold mb-4 text-center">
-        Новые книги на сайте
+        {t('new_books')}
       </h1>
       <p className="text-lg text-gray-700 mb-6 text-center">
-        Откройте для себя 50 новейших книг, добавленных на наш сайт!
+        {t('discover_50_books')}
       </p>
 
       <p className="text-lg text-gray-700 leading-relaxed mb-8">
-        В этом разделе вы найдете свежие поступления нашей электронной библиотеки. Мы постоянно обновляем нашу коллекцию, 
-        чтобы предложить вам самые актуальные новинки литературного мира. Независимо от того, интересуетесь ли вы художественной 
-        литературой, нон-фикшеном, биографиями или поэзией – здесь вы найдете что-то по душе.
+        {t('section_intro')}
       </p>
 
       <p className="text-lg text-gray-700 leading-relaxed mt-5">
-        Читайте онлайн или скачивайте книги, чтобы наслаждаться ими на вашем устройстве в любое удобное время, даже без подключения к интернету.
+        {t('read_online_or_download')}
       </p>
 
       <p className="text-lg text-gray-700 leading-relaxed mt-5">
-        Установите наше мобильное приложение для удобного чтения на смартфоне или планшете. С нами вы всегда будете в курсе последних литературных тенденций и сможете открыть для себя новых авторов.
+        {t('install_app')}
       </p>
 
       <form onSubmit={getSearch} className="flex justify-center mb-8">
         <input
           type="text"
-          placeholder="Search Book..."
+          placeholder={t('search_placeholder')}
           className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -75,7 +75,7 @@ const News = () => {
           type="submit"
           className="bg-blue-400 text-white rounded-r-md px-4 py-2 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
-          Search
+          {t('search_button')}
         </button>
       </form>
 
@@ -99,23 +99,25 @@ const News = () => {
                   rel="noreferrer"
                   className="text-blue-500 hover:underline"
                 >
-                  Preview
+                  {t('previeww')}
                 </a>
                 {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
                   <button
                     className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
                     onClick={() => checkIt(book?.id)}
                   >
-                    Read Online
+                    {t('read_online')}
                   </button>
                 ) : (
-                  <h3 className="text-gray-600">Not Available</h3>
+                  <h3 className="text-gray-600">{t('not_available')}</h3>
                 )}
               </div>
             </div>
           ))
         ) : (
-          <p className="text-gray-600 text-center col-span-full">No books found.</p>
+          <p className="text-gray-600 text-center col-span-full">
+            {t('no_books_found')}
+          </p>
         )}
       </div>
 
@@ -125,14 +127,14 @@ const News = () => {
           disabled={currentPage === 1}
           className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
         >
-          Previous
+          {t('previous_button')}
         </button>
         <button
           onClick={handleNext}
           disabled={books.length < itemsPerPage}
           className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
         >
-          Next
+          {t('next_button')}
         </button>
       </div>
 

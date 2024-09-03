@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import VKIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TelegramIcon from '@mui/icons-material/Telegram';
+import Loader from '../../components/loader/loader'; // Import your Loader component
 
 const Topbooks = () => {
   const { t } = useTranslation();
@@ -14,16 +15,22 @@ const Topbooks = () => {
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
+    setLoading(true); // Start loading
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}&key=AIzaSyCJbUF_JRiOk9R6abyiAZ3QddT6TQ_LAO0`
     )
       .then((res) => res.json())
       .then((result) => {
         setBooks(result.items || []);
+        setLoading(false); // Stop loading
       })
-      .catch((error) => alert("Error fetching data"));
+      .catch((error) => {
+        alert("Error fetching data");
+        setLoading(false); // Stop loading on error
+      });
   }, [query, currentPage]);
 
   const getSearch = (e) => {
@@ -73,45 +80,51 @@ const Topbooks = () => {
           </button>
         </form>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.length > 0 ? (
-            books.map((book, key) => (
-              <div key={key} className="bg-white p-4 rounded-lg shadow-md">
-                <img
-                  src={
-                    book?.volumeInfo?.imageLinks
-                      ? Object.values(book.volumeInfo.imageLinks)[0]
-                      : ""
-                  }
-                  alt={t('coverImage')}
-                  className="w-full h-60 object-cover rounded-lg mb-4"
-                />
-                <div className="flex justify-between items-center">
-                  <a
-                    href={book.volumeInfo.previewLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    {t('preview')}
-                  </a>
-                  {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
-                    <button
-                      className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
-                      onClick={() => checkIt(book?.id)}
+        {loading ? (
+          <div className="flex justify-center items-center h-96">
+            <Loader /> {/* Display the loader while loading */}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {books.length > 0 ? (
+              books.map((book, key) => (
+                <div key={key} className="bg-white p-4 rounded-lg shadow-md">
+                  <img
+                    src={
+                      book?.volumeInfo?.imageLinks
+                        ? Object.values(book.volumeInfo.imageLinks)[0]
+                        : ""
+                    }
+                    alt={t('coverImage')}
+                    className="w-full h-60 object-cover rounded-lg mb-4"
+                  />
+                  <div className="flex justify-between items-center">
+                    <a
+                      href={book.volumeInfo.previewLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      {t('readOnline')}
-                    </button>
-                  ) : (
-                    <h3 className="text-gray-600">{t('notAvailable')}</h3>
-                  )}
+                      {t('preview')}
+                    </a>
+                    {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
+                      <button
+                        className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
+                        onClick={() => checkIt(book?.id)}
+                      >
+                        {t('readOnline')}
+                      </button>
+                    ) : (
+                      <h3 className="text-gray-600">{t('notAvailable')}</h3>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-600 text-center col-span-full">{t('noBooksFound')}</p>
-          )}
-        </div>
+              ))
+            ) : (
+              <p className="text-gray-600 text-center col-span-full">{t('noBooksFound')}</p>
+            )}
+          </div>
+        )}
 
         <div className="flex justify-between mt-8">
           <button

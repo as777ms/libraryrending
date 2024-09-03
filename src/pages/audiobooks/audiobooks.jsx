@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Audiobooks = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("new audio");
   const [audiobooks, setAudiobooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(12); // Number of items per page
+  const [itemsPerPage] = useState(12);
 
   useEffect(() => {
     const fetchAudiobooks = async () => {
@@ -16,12 +18,12 @@ const Audiobooks = () => {
         const data = await response.json();
         setAudiobooks(data.docs || []);
       } catch (error) {
-        alert("Failed to fetch audiobooks. Please check your internet connection.");
+        alert(t("Failed to fetch audiobooks. Please check your internet connection."));
       }
     };
 
     fetchAudiobooks();
-  }, [query, currentPage]);
+  }, [query, currentPage, t]);
 
   const getSearch = (e) => {
     e.preventDefault();
@@ -31,7 +33,7 @@ const Audiobooks = () => {
       setSearch("");
       setCurrentPage(1);
     } else {
-      alert("Enter Audiobook Title!!");
+      alert(t("Enter Audiobook Title!!"));
     }
   };
 
@@ -40,14 +42,14 @@ const Audiobooks = () => {
 
   return (
     <div className="container mx-auto px-2 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">Audiobooks</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">{t('Audiobookss')}</h1>
       <div className="w-full lg:w-11/12 mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">Find Audiobooks</h2>
+        <h2 className="text-3xl font-semibold mb-6">{t('Find Audiobooks')}</h2>
 
         <form onSubmit={getSearch} className="flex mb-8 w-full">
           <input
             type="text"
-            placeholder="Search Audiobook..."
+            placeholder={t('Search Audiobook...')}
             className="flex-grow py-2 px-4 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -56,7 +58,7 @@ const Audiobooks = () => {
             type="submit" 
             className="bg-blue-500 text-white py-2 px-6 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
           >
-            Search
+            {t('Search')}
           </button>
         </form>
 
@@ -67,7 +69,7 @@ const Audiobooks = () => {
                 <div>
                   <h3 className="text-xl font-semibold mb-2">{audiobook.title}</h3>
                   <p className="text-gray-600 mb-4">
-                    Author: {audiobook.author_name?.join(", ")}
+                    {t('Author')}: {audiobook.author_name?.join(", ")}
                   </p>
                   {audiobook.cover_i && (
                     <img
@@ -84,7 +86,7 @@ const Audiobooks = () => {
                     rel="noopener noreferrer"
                     className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300"
                   >
-                    View Details
+                    {t('View Details')}
                   </a>
                   <a
                     href={`https://archive.org/details/${audiobook.edition_key?.[0]}`}
@@ -92,13 +94,13 @@ const Audiobooks = () => {
                     rel="noopener noreferrer"
                     className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors duration-300"
                   >
-                    Listen
+                    {t('Listen')}
                   </a>
                 </div>
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-600">No audiobooks found.</p>
+            <p className="text-center text-gray-600">{t('No audiobooks found.')}</p>
           )}
         </div>
 
@@ -108,14 +110,14 @@ const Audiobooks = () => {
             disabled={currentPage === 1}
             className="bg-gray-300 text-gray-700 py-2 px-4 rounded-l-md hover:bg-gray-400 disabled:bg-gray-200 disabled:text-gray-400"
           >
-            Previous
+            {t('Previous')}
           </button>
           <button
             onClick={handleNext}
             disabled={audiobooks.length < itemsPerPage}
             className="bg-blue-500 text-white py-2 px-4 rounded-r-md hover:bg-blue-600 disabled:bg-blue-300 disabled:text-gray-400"
           >
-            Next
+            {t('Next')}
           </button>
         </div>
       </div>

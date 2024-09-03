@@ -9,7 +9,7 @@ import Swipper from "../../components/swipper/swipper";
 const PostPage = ({ prime }) => {
   return (
     <>
-      <div className="lg:pl-[200px]">
+      <div className="lg:pl-[]">
         <Cart />
         {/* <SwiperIntro /> */}
         <Slider />

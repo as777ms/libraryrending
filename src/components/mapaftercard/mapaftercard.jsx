@@ -13,9 +13,9 @@ const Mapaftercard = () => {
     dispatch(getTodos());
   }, [dispatch]);
 
-  if (loading) return <div>{t('loading')}</div>;
-  if (error) return <div>{t('error')}{error.message}</div>;
-  if (!data || data.length === 0) return <div>{t('no_data')}</div>;
+  if (loading) return <div className="text-center text-xl mt-10">{t('loading')}</div>;
+  if (error) return <div className="text-center text-red-500 mt-10">{t('error')}{error.message}</div>;
+  if (!data || data.length === 0) return <div className="text-center text-gray-500 mt-10">{t('no_data')}</div>;
 
   // Group books into rows of 2 or 3
   const rows = [];
@@ -24,30 +24,37 @@ const Mapaftercard = () => {
   }
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '100px', width: "70%", margin: "auto" }}>
-      <h1 style={{ fontWeight: 700, fontSize: '2.5rem', marginBottom: '0.5rem', color: 'grey' }}>
+    <div className="container mx-auto mt-24 text-center px-4 md:px-8 lg:px-16">
+      <h1 className="font-bold text-4xl md:text-5xl mb-4 text-gray-700">
         {t('best_business_books')}
       </h1>
-      <p style={{ fontSize: '1.1rem', color: 'grey' }}>
+      <p className="text-lg md:text-xl text-gray-600 mb-8">
         {t('business_non_fiction_literature')}
       </p>
 
-      {rows.map((row, rowIndex) => (
-        <div key={rowIndex} style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          {row.map((item) => (
-            <div key={item.id} style={{ margin: '10px', width: '200px' }}>
-              <Link to={`/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  style={{ width: '100%', height: '250px', objectFit: 'cover', marginBottom: '10px' }} 
-                />
-                <h3 style={{ fontSize: '1.1rem', color: 'black' }}>{item.title}</h3> 
-              </Link>
-            </div>
-          ))}
-        </div>
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {rows.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex flex-col justify-center items-center">
+            {row.map((item) => (
+              <div
+                key={item.id}
+                className="w-full p-2 hover:shadow-lg transition-shadow duration-300 rounded-lg bg-white"
+              >
+                <Link to={`/${item.id}`} className="block text-center">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-full h-[500px] object-cover rounded-md mb-4"
+                  />
+                  <h3 className="text-lg md:text-xl font-medium text-gray-800 mb-2">
+                    {item.title}
+                  </h3>
+                </Link>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

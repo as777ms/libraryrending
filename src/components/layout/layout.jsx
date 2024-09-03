@@ -5,7 +5,8 @@ import Acordionfooter from '../acordionfooter/acordionfooter';
 import { destroyToken } from '../../utils/getToken';
 import { useTranslation } from 'react-i18next';
 import ThemeToggle from '../../ThemeToggle';
-
+import { Suspense } from 'react';
+import Loader from '../loader/loader';
 const Layout = ({ hoopla }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -22,12 +23,12 @@ const Layout = ({ hoopla }) => {
           {/* Your logo image or text here */}
         </div>
         <nav className="header-nav">
+        <ThemeToggle /> 
           <Link to="/" className='nav-link home-link'>{t('Home')}</Link>
           <Link to="/posts" className='nav-link'>{t('What to choose')}</Link>
           <Link to="/about" className='nav-link'>{t('About')}</Link>
           <Button className="custom-button">{t('Button Text')}</Button>
           
-          <ThemeToggle /> 
         </nav>
       </header>
 
@@ -39,7 +40,9 @@ const Layout = ({ hoopla }) => {
       </nav>
 
       <main className="main-container">
+        <Suspense fallback={<Loader />}>
         <Outlet />
+        </Suspense>
       </main>
 
       <footer className="footer">

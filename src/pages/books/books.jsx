@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Books = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('survive');
   const [books, setBooks] = useState([]);
@@ -17,8 +19,8 @@ const Books = () => {
       .then((result) => {
         setBooks(result.items || []);
       })
-      .catch((error) => alert("internet nadori fetch galtid"));
-  }, [query, currentPage]);
+      .catch((error) => alert(t("internet nadori fetch galtid")));
+  }, [query, currentPage, t]);
 
   const getSearch = (e) => {
     e.preventDefault();
@@ -28,7 +30,7 @@ const Books = () => {
       setSearch('');
       setCurrentPage(1);
     } else {
-      alert('Enter Book Name!!');
+      alert(t('Enter Book Name!!'));
     }
   };
 
@@ -46,7 +48,7 @@ const Books = () => {
       {query === 'survive' && (
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-center text-gray-700">
-            Discover a wide range of free books available on our site!
+            {t('Discover a wide range of free books available on our site!')}
           </h2>
         </div>
       )}
@@ -54,7 +56,7 @@ const Books = () => {
       <form onSubmit={getSearch} className="flex justify-center mb-4">
         <input
           type="text"
-          placeholder="Search Book..."
+          placeholder={t("Search Book...")}
           className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -63,7 +65,7 @@ const Books = () => {
           type="submit"
           className="bg-sky-400 text-white rounded-r-md px-4 py-2 hover:bg-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-400"
         >
-          Search
+          {t("Search")}
         </button>
       </form>
 
@@ -71,7 +73,7 @@ const Books = () => {
       {query !== 'survive' && (
         <div className="mb-4">
           <h2 className="text-xl font-semibold text-center text-gray-700">
-            Enjoy browsing through a variety of free books on our site!
+            {t('Enjoy browsing through a variety of free books on our site!')}
           </h2>
         </div>
       )}
@@ -96,23 +98,23 @@ const Books = () => {
                   rel="noreferrer"
                   className="text-sky-500 hover:underline"
                 >
-                  Preview
+                  {t("Preview")}
                 </a>
                 {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
                   <button
                     className="bg-sky-400 text-white rounded px-4 py-2 hover:bg-sky-500"
                     onClick={() => checkIt(book?.id)}
                   >
-                    Read Online
+                    {t("Read Online")}
                   </button>
                 ) : (
-                  <h3 className="text-gray-600">Not Available</h3>
+                  <h3 className="text-gray-600">{t("Not Available")}</h3>
                 )}
               </div>
             </div>
           ))
         ) : (
-          <p className="text-gray-600 text-center col-span-full">No books found.</p>
+          <p className="text-gray-600 text-center col-span-full">{t("No books found.")}</p>
         )}
       </div>
 
@@ -122,14 +124,14 @@ const Books = () => {
           disabled={currentPage === 1}
           className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
         >
-          Previous
+          {t("Previous")}
         </button>
         <button
           onClick={handleNext}
           disabled={books.length < itemsPerPage}
           className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
         >
-          Next
+          {t("Next")}
         </button>
       </div>
 

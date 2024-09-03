@@ -3,11 +3,14 @@ import { Card, CardContent, Typography, Button, Grid } from '@mui/material';
 import { Book, Build, DeviceHub, Code } from '@mui/icons-material';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { useTranslation } from 'react-i18next';
 
 const FeatureCard = ({ icon: Icon, title, description, actionText }) => {
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
+
+  const { t } = useTranslation();
 
   return (
     <Card
@@ -28,10 +31,10 @@ const FeatureCard = ({ icon: Icon, title, description, actionText }) => {
       <CardContent>
         <Icon sx={{ fontSize: 50, color: '#0066cc', mb: 2 }} />
         <Typography variant="h6" component="div" gutterBottom>
-          {title}
+          {t(title)}
         </Typography>
         <Typography variant="body2" color="textSecondary" sx={{ color: '#555555' }}>
-          {description}
+          {t(description)}
         </Typography>
         {actionText && (
           <Button
@@ -47,7 +50,7 @@ const FeatureCard = ({ icon: Icon, title, description, actionText }) => {
             }}
             href="#"
           >
-            {actionText}
+            {t(actionText)}
           </Button>
         )}
       </CardContent>
@@ -56,18 +59,19 @@ const FeatureCard = ({ icon: Icon, title, description, actionText }) => {
 };
 
 const LibraryOverview = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <div>
         <Typography variant="h3" component="div" align="center" gutterBottom>
-          Welcome to Our Library
+          {t("Welcome to Our Library")}
         </Typography>
         <Typography variant="h5" component="div" align="center" sx={{ mb: 4 }}>
-          Discover a world of knowledge with our diverse collection of books and resources.
+          {t("Discover a world of knowledge with our diverse collection of books and resources.")}
         </Typography>
         <Typography variant="body1" component="div" align="center" sx={{ mb: 6 }}>
-          Our library offers an extensive range of genres, from fiction and non-fiction to academic and reference materials. 
-          We are dedicated to providing you with the best resources to enhance your learning and entertainment experience.
+          {t("Our library offers an extensive range of genres, from fiction and non-fiction to academic and reference materials. We are dedicated to providing you with the best resources to enhance your learning and entertainment experience.")}
         </Typography>
         
         <Grid container spacing={4} justifyContent="center">
@@ -120,7 +124,7 @@ const LibraryOverview = () => {
             transition: 'transform 0.3s ease'
           }}
         >
-          Show More
+          {t("Show More")}
         </Button>
       </div>
     </>

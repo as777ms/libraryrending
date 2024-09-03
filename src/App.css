@@ -1,6 +1,5 @@
 :root {
-        --background-gradient: linear-gradient(to bottom right, #ecf0f1, #e7eaf1, #e3e8f1, #dee3f1, #d9dff1, #d5dcf1, #d1daf1, #cdcfd1, #c8cacd, #c2c5cc, #bdbec4, #b7bbc3, #b3b7c2, #afb1c1, #a8abc0, #a2a5be, #9c9fbd, #9693bc, #9190bb, #8b89b9, #8684b8, #8281b6, #7d7ab5, #7774b3, #7270b1, #6c68af, #6661ae, #6160ac);
-
+    --background-gradient: linear-gradient(to bottom right, #ecf0f1, #e7eaf1, #e3e8f1, #dee3f1, #d9dff1, #d5dcf1, #d1daf1, #cdcfd1, #c8cacd, #c2c5cc, #bdbec4, #b7bbc3, #b3b7c2, #afb1c1, #a8abc0, #a2a5be, #9c9fbd, #9693bc, #9190bb, #8b89b9, #8684b8, #8281b6, #7d7ab5, #7774b3, #7270b1, #6c68af, #6661ae, #6160ac);
     --text-color: black;
     --card-background: #f0f0f0;
     --header-color: #343a40;
@@ -17,24 +16,35 @@
     --prime-text-color: white;
 }
 
+body {
+    background: var(--background-gradient);
+    color: var(--text-color);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
 .gradient-background {
     background: var(--background-gradient);
     color: var(--text-color);
-    width: 120%;
-    height: 3000px;
+    width: 100%; /* Changed to 100% for better fit */
+    min-height: 100vh; /* Adjusted for full screen coverage */
 }
 
 .category-card {
     background-color: var(--card-background);
     color: var(--text-color);
+    padding: 20px; /* Optional: Adds padding for better look */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow */
 }
 
 .amazon-prime-container {
     background-color: var(--prime-background);
     color: var(--prime-text-color);
+    padding: 15px; /* Optional: Adds padding for better look */
+    border-radius: 8px; /* Optional: Adds rounded corners */
 }
 
 h1, p {
     color: var(--text-color);
+    transition: color 0.3s ease; /* Smooth transition on text color change */
 }
-

@@ -1,0 +1,54 @@
+.about-page {
+    background-color: var(--background-color, #f8f9fa);
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    color: var(--text-color, #343a40);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.about-title {
+    color: var(--header-color, #343a40);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about-subtitle, .about-footer, .section-description {
+    color: var(--text-secondary-color, #6c757d);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about-divider {
+    border-color: #dee2e6;
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    color: var(--header-color, #343a40);
+    margin-bottom: 1rem;
+}
+
+.about-list {
+    list-style: disc;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.list-item {
+    color: var(--text-color, #343a40);
+}
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.contact-link {
+    color: var(--link-color, #007bff);
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+}
