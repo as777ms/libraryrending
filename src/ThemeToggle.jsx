@@ -4,7 +4,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 
-// Custom styled switch
+// Custom styled switch with sun and moon icons
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
   height: 34,
@@ -17,7 +17,20 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       color: '#fff',
       transform: 'translateX(22px)',
       '& .MuiSwitch-thumb:before': {
-        backgroundImage: 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(\'#fff\')}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>\')',
+        content: "''",
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        left: 0,
+        top: 0,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        // Moon icon for dark mode
+        // Moon icon for dark mode
+        backgroundImage: `url("data:image/svg+xml;utf8,
+          <svg xmlns='http://www.w3.org/2000/svg' height='20' width='20' viewBox='0 0 24 24'>
+            <path fill='#fff' d='M12.74 2c-.43 0-.85.02-1.27.07a10.47 10.47 0 0 0-9.64 10.64 10.45 10.45 0 0 0 13.45 9.86 10.46 10.46 0 0 1-2.54 1.7 10.45 10.45 0 0 1-4.22.73 10.46 10.46 0 0 1-2.48-.3A10.47 10.47 0 1 1 22 12.74c0-.42-.02-.84-.07-1.26a10.47 10.47 0 0 0-9.19-9.48z'/>
+          </svg>")`,
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
@@ -38,7 +51,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       top: 0,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
-      backgroundImage: 'url(\'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(\'#fff\')}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>\')',
+      // Sun icon for light mode
+      backgroundImage: `url("data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' height='20' width='20' viewBox='0 0 24 24'>
+          <path fill='#fff' d='M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0-2a1.5 1.5 0 1 1 0 3h-1v-1h2v1h-1v-1a8.48 8.48 0 0 1 0 16h1v-1h2v1h-1a8.5 8.5 0 1 1 0-17zm4 6h2v2h-2V8zm0 6h2v2h-2v-2zM8 8v2H6V8h2zm0 6v2H6v-2h2zm7.89-7.89l1.42 1.42-1.42 1.42-1.42-1.42 1.42-1.42zm-9.17 0l1.42 1.42-1.42 1.42L5.3 8.83 7.3 6.83zM18.66 6.34l-1.42 1.42-1.42-1.42 1.42-1.42 1.42 1.42zM7.29 17.65l-1.42 1.42-1.42-1.42 1.42-1.42 1.42 1.42z'/>
+        </svg>")`,
     },
   },
   '& .MuiSwitch-track': {
@@ -47,8 +64,6 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
-
-
 const ThemeToggle = () => {
   const [theme, setTheme] = React.useState('light');
 

@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
-import './selfhelp.css'; // Add custom styles in Selfhelp.css
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import InfoSharpIcon from '@mui/icons-material/InfoSharp';
+import { useTranslation } from 'react-i18next';
 
 const Selfhelp = () => {
   const [search, setSearch] = useState("");
@@ -8,18 +9,19 @@ const Selfhelp = () => {
   const [books, setBooks] = useState([]);
   const [id, setId] = useState("");
   const [term, setTerm] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1); // Track current page
-  const [itemsPerPage] = useState(10); // Number of items per page
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
+  const { t } = useTranslation();
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}&key=AIzaSyCJbUF_JRiOk9R6abyiAZ3QddT6TQ_LAO0`
     )
       .then((res) => res.json())
       .then((result) => {
-        setBooks(result.items || []); // Ensure it's an array
+        setBooks(result.items || []);
       })
-      .catch((error) => alert("internet nadori fetch galtid", error.message));
+      .catch((error) => alert("Error fetching data"));
   }, [query, currentPage]);
 
   const getSearch = (e) => {
@@ -28,7 +30,7 @@ const Selfhelp = () => {
     if (search !== '') {
       setQuery(search);
       setSearch('');
-      setCurrentPage(1); // Reset to the first page on new search
+      setCurrentPage(1);
     } else {
       alert('Enter Book Name!!');
     }
@@ -39,100 +41,111 @@ const Selfhelp = () => {
     setTerm(true);
   };
 
-  // Function to handle pagination
   const handleNext = () => setCurrentPage((prev) => prev + 1);
   const handlePrevious = () => setCurrentPage((prev) => prev - 1);
 
   return (
-    <div className="drama-container">
-      <h1>Selfhelp</h1>
-      <div className="App">
-        <h1 className="title">Look Book</h1>
+    <div className="max-w-5xl mx-auto">
+      <h1 className="text-2xl md:text-3xl font-semibold mb-4 text-center text-gray-700">
+  {t('descriptiondrama')}
+</h1>
 
-        <form onSubmit={getSearch} className="search-form">
-          <input
-            type="text"
-            placeholder="Search Book..."
-            className="search-bar"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button type="submit" className="search-btn">
-            Search
-          </button>
-        </form>
 
-        <div className="books">
-          {books.length > 0 ? (
-            books.map((book, key) => (
-              <div key={key} className="book-item">
-                <img
-                  src={
-                    book?.volumeInfo?.imageLinks
-                      ? Object.values(book.volumeInfo.imageLinks)[0]
-                      : ""
-                  }
-                  alt="cover img"
-                  className="BookImg"
-                />
-                <div className="book-item-btns">
-                  <a
-                    href={book.volumeInfo.previewLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="preview-btn"
-                  >
-                    Preview
-                  </a>
-                  {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
-                    <button
-                      className="read-btn"
-                      onClick={() => checkIt(book?.id)}
-                    >
-                      Read Online
-                    </button>
-                  ) : (
-                    <h3 className="null-point">Not Available</h3>
-                  )}
-                </div>
+      <form onSubmit={getSearch} className="flex justify-center mb-8">
+        <input
+          type="text"
+          placeholder="Search Book..."
+          className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-blue-400 text-white rounded-r-md px-4 py-2 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Search
+        </button>
+      </form>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {books.length > 0 ? (
+          books.map((book, key) => (
+            <div key={key} className="bg-white p-4 rounded-lg shadow-md">
+              <img
+                src={
+                  book?.volumeInfo?.imageLinks
+                    ? Object.values(book.volumeInfo.imageLinks)[0]
+                    : ""
+                }
+                alt="cover img"
+                className="w-full h-60 object-cover rounded-lg mb-4"
+              />
+              <div className="flex justify-between items-center">
+                <a
+                  href={book.volumeInfo.previewLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Preview
+                </a>
+                {book?.accessInfo.pdf["acsTokenLink"] !== undefined ? (
+                  <button
+                  className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
+                  onClick={() => checkIt(book?.id)}
+                >
+                  Read Online
+                </button>
+                ) : (
+                  <h3 className="text-gray-600">Not Available</h3>
+                )}
               </div>
-            ))
-          ) : (
-            <p className="no-results">No books found.</p>
-          )}
-        </div>
+              <Link to={`/infobooksbyid/${book.id}`}>
+                <button className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500 w-[210px] mt-[10px]">
+                  <InfoSharpIcon className="mr-2" /> Info
+                </button>
+              </Link>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-600 text-center col-span-full">No books found.</p>
+        )}
+      </div>
 
-        {/* Pagination */}
-        <div className="pagination">
-          <button
-            onClick={handlePrevious}
-            disabled={currentPage === 1}
-            className="pagination-btn"
-          >
-            Previous
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={books.length < itemsPerPage}
-            className="pagination-btn"
-          >
-            Next
-          </button>
-        </div>
+      <div className="flex justify-between mt-8">
+        <button
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+          className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={books.length < itemsPerPage}
+          className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
 
-        {term && (
-          <div className="reading-block">
-            <button className="close-btn" onClick={() => setTerm(false)}>
+      {term && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75">
+          <div className="relative w-full max-w-4xl p-8 bg-white rounded-lg">
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600"
+              onClick={() => setTerm(false)}
+            >
               X
             </button>
             <iframe
               src={`https://books.google.com.pk/books?id=${id}&lpg=PP1&pg=PP1&output=embed`}
               title="Pdf Viewer"
-              className="iframe"
+              className="w-full h-96 rounded-lg"
             ></iframe>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

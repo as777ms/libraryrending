@@ -69,75 +69,50 @@ const Infobooksbyid = () => {
           src={book.volumeInfo.imageLinks?.thumbnail || "path/to/default/image.jpg"}
           alt="cover img"
           onError={(e) => { e.target.onerror = null; e.target.src = "path/to/default/image.jpg"; }}
-          className="w-full md:w-1/2 mx-auto mb-4 rounded-lg"
+          className="w-full md:w-1/3 mx-auto rounded-lg shadow-md mb-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         />
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-4">
+        <div className="flex justify-between items-center">
           <a
             href={book.volumeInfo.previewLink}
             target="_blank"
-            rel="noopener noreferrer"
-            className="preview-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            rel="noreferrer"
+            className="text-blue-500 hover:underline"
           >
             Preview
           </a>
-          {book.accessInfo.pdf && book.accessInfo.pdf.isAvailable ? (
+          {book.accessInfo.pdf?.acsTokenLink ? (
             <button
-              className="read-btn bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
               onClick={checkIt}
+              className="bg-green-400 text-white rounded px-2 py-1 hover:bg-green-500 text-sm"
             >
               Read Online
             </button>
           ) : (
-            <h3 className="null-point text-red-500">Not Available</h3>
+            <span className="text-gray-600">Not Available</span>
           )}
-          <a
-            href={book.volumeInfo.infoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="info-link bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Info Link
-          </a>
-          <a
-            href={book.volumeInfo.canonicalVolumeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="canonical-link bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Canonical Link
-          </a>
         </div>
       </motion.div>
 
       {term && (
-        <div className="reading-block fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
-          <button
-            className="close-btn absolute top-4 right-4 text-white text-2xl"
-            onClick={() => setTerm(false)}
-          >
-            X
-          </button>
-          <iframe
-            src={`https://books.google.com.pk/books?id=${id}&lpg=PP1&pg=PP1&output=embed`}
-            title="Pdf Viewer"
-            className="iframe w-full h-full"
-          ></iframe>
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75">
+          <div className="relative w-full max-w-4xl p-8 bg-white rounded-lg">
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-2 hover:bg-red-600"
+              onClick={() => setTerm(false)}
+            >
+              X
+            </button>
+            <iframe
+              src={`https://books.google.com.pk/books?id=${id}&lpg=PP1&pg=PP1&output=embed`}
+              title="Pdf Viewer"
+              className="w-full h-96 rounded-lg"
+            ></iframe>
+          </div>
         </div>
       )}
-
-      <div className="">
-        <div className="recommendations bg-yellow-100 p-4 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-2">Recommendations</h2>
-          <p>Check out these other great books!</p>
-        </div>
-        <div className="advertisement bg-blue-100 p-4 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold mb-2">Advertisement</h2>
-          <p>Promote your book here!</p>
-        </div>
-      </div>
     </div>
   );
 };

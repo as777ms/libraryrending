@@ -33,7 +33,7 @@ const News = lazy(()=>import('./pages/news/news'))
 const Topbooks = lazy(()=>import('./pages/topbooks/topbooks'))
 const Topaudiobooks = lazy(()=>import('./pages/topaudiobooks/topaudiobooks'))
 const Infobooksbyid = lazy(()=>import('./pages/infobooksbyid/infobooksbyid'))
-
+const Historicalfiction = lazy(()=>import('./pages/historicalfiction/historicalfiction'))
 const App = () => {
   return (
     <>
@@ -71,6 +71,7 @@ const App = () => {
           <Route path="/topbooks" element={<Topbooks />}/>
           <Route path="/topaudiobooks" element={<Topaudiobooks />}/>
           <Route path="/infobooksbyid/:id" element={<Infobooksbyid />} />
+          <Route path="/historicalfiction" element={<Historicalfiction />} />
         </Route>
       </Routes>
     </Router>
