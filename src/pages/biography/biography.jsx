@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp'; // Importing the Info icon from Material-UI
-
+import { useTranslation } from 'react-i18next';
 const Biography = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('Biography');
@@ -10,7 +10,7 @@ const Biography = () => {
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-
+  const { t } = useTranslation();
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}&key=AIzaSyCJbUF_JRiOk9R6abyiAZ3QddT6TQ_LAO0`
@@ -44,7 +44,7 @@ const Biography = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-extrabold mb-4 text-center">Biography Books</h1>
+      <h1 className="text-4xl font-extrabold mb-4 text-center"> {t('View Biography')}</h1>
       <form onSubmit={getSearch} className="flex justify-center mb-8">
         <input
           type="text"

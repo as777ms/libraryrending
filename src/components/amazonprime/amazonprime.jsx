@@ -32,7 +32,7 @@ const Amazonprime = ({ prime }) => {
           boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <img src={prime} alt={t('primeLogoAlt')} style={{ height: '50px', marginRight: '20px' }} />
+        <img src={prime} alt={t('primeLogoAlt')} style={{ height: '40px', width: "100px", marginRight: '20px' }} />
         <div>
           <p
             style={{

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp'; // Importing the Info icon from Material-UI
-
+import { useTranslation } from 'react-i18next';
 const Fiction = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('science fiction');
@@ -10,6 +10,8 @@ const Fiction = () => {
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     fetch(
@@ -44,7 +46,7 @@ const Fiction = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-extrabold mb-4 text-center">Fiction Books</h1>
+      <h1 className="text-4xl font-extrabold mb-4 text-center"> {t('View fiction')}</h1>
       <form onSubmit={getSearch} className="flex justify-center mb-8">
         <input
           type="text"

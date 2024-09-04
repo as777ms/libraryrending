@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom';
+import "./../login/login.css"; // Reusing the same CSS as in the Login component
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -12,7 +13,7 @@ const Registration = () => {
     });
 
     const [error, setError] = useState('');
-    const navigate = useNavigate();  // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -45,7 +46,7 @@ const Registration = () => {
 
             if (response.status === 200) {
                 console.log('Registration successful:', response.data);
-                navigate('/login');  // Redirect to the login page
+                navigate('/login');
             } else {
                 setError('Registration failed');
             }
@@ -61,59 +62,44 @@ const Registration = () => {
     };
 
     return (
-        <div>
-            <h2>Register</h2>
+        <div className='bgimgLogin'>
+            <h1 className='' style={{ color: "rgb(92, 166, 255)" }}>Create an Account</h1>
             <form onSubmit={handleRegistration}>
-                <div>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        name="userName"
-                        value={formData.userName}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Phone Number:</label>
-                    <input
-                        type="text"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Confirm Password:</label>
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+                <input
+                    type="text"
+                    name="userName"
+                    placeholder="Username"
+                    value={formData.userName}
+                    onChange={handleChange}
+                />
+                <input
+                    type="text"
+                    name="phoneNumber"
+                    placeholder="Phone Number"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                />
+                <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                />
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Register</button>
             </form>

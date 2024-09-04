@@ -26,7 +26,7 @@ button {
 }
 
 .bg-white {
-  background-color: white;
+  background-color: transparent;
 }
 
 .text-blue-500 {
@@ -50,5 +50,5 @@ button {
 }
 
 .hover\:bg-gray-400:hover {
-  background-color: #9ca3af;
+  background-color: white;
 }

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 const Audiobooks = () => {
   const { t } = useTranslation();
   const [search, setSearch] = useState("");
-  const [query, setQuery] = useState("new audio");
+  const [query, setQuery] = useState("prison");
   const [audiobooks, setAudiobooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(12);
@@ -41,85 +41,80 @@ const Audiobooks = () => {
   const handlePrevious = () => setCurrentPage((prev) => prev - 1);
 
   return (
-    <div className="container mx-auto px-2 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-center">{t('Audiobookss')}</h1>
-      <div className="w-full lg:w-11/12 mx-auto">
-        <h2 className="text-3xl font-semibold mb-6">{t('Find Audiobooks')}</h2>
+    <div className="max-w-5xl mx-auto">
+      <h1 className="text-4xl font-extrabold mb-4 text-center">{t('Audiobooks')}</h1>
+      
+      <form onSubmit={getSearch} className="flex justify-center mb-8">
+        <input
+          type="text"
+          placeholder={t('Search Audiobook...')}
+          className="border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="bg-blue-400 text-white rounded-r-md px-4 py-2 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          {t('Search')}
+        </button>
+      </form>
 
-        <form onSubmit={getSearch} className="flex mb-8 w-full">
-          <input
-            type="text"
-            placeholder={t('Search Audiobook...')}
-            className="flex-grow py-2 px-4 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button 
-            type="submit" 
-            className="bg-blue-500 text-white py-2 px-6 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
-          >
-            {t('Search')}
-          </button>
-        </form>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {audiobooks.length > 0 ? (
-            audiobooks.map((audiobook, key) => (
-              <div key={key} className="bg-white shadow-md rounded-lg p-6 w-full h-full flex flex-col justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{audiobook.title}</h3>
-                  <p className="text-gray-600 mb-4">
-                    {t('Author')}: {audiobook.author_name?.join(", ")}
-                  </p>
-                  {audiobook.cover_i && (
-                    <img
-                      src={`https://covers.openlibrary.org/b/id/${audiobook.cover_i}-M.jpg`}
-                      alt={`${audiobook.title} cover`}
-                      className="w-full h-64 object-cover mb-4 rounded-md"
-                    />
-                  )}
-                </div>
-                <div className="flex justify-between mt-4">
-                  <a
-                    href={`https://openlibrary.org/works/${audiobook.key}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300"
-                  >
-                    {t('View Details')}
-                  </a>
-                  <a
-                    href={`https://archive.org/details/${audiobook.edition_key?.[0]}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors duration-300"
-                  >
-                    {t('Listen')}
-                  </a>
-                </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {audiobooks.length > 0 ? (
+          audiobooks.map((audiobook, key) => (
+            <div key={key} className="bg-transparent p-4 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-2">{audiobook.title}</h3>
+              <p className="text-gray-600 mb-4">
+                {t('Author')}: {audiobook.author_name?.join(", ")}
+              </p>
+              {audiobook.cover_i && (
+                <img
+                  src={`https://covers.openlibrary.org/b/id/${audiobook.cover_i}-M.jpg`}
+                  alt={`${audiobook.title} cover`}
+                  className="w-full h-64 object-cover mb-4 rounded-md"
+                />
+              )}
+              <div className="flex justify-between items-center">
+                <a
+                  href={`https://openlibrary.org/works/${audiobook.key}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  {t('View Details')}
+                </a>
+                <a
+                  href={`https://archive.org/details/${audiobook.edition_key?.[0]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500"
+                >
+                  {t('Listen')}
+                </a>
               </div>
-            ))
-          ) : (
-            <p className="text-center text-gray-600">{t('No audiobooks found.')}</p>
-          )}
-        </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-gray-600 text-center col-span-full">{t('No audiobooks found.')}</p>
+        )}
+      </div>
 
-        <div className="flex justify-center mt-8">
-          <button
-            onClick={handlePrevious}
-            disabled={currentPage === 1}
-            className="bg-gray-300 text-gray-700 py-2 px-4 rounded-l-md hover:bg-gray-400 disabled:bg-gray-200 disabled:text-gray-400"
-          >
-            {t('Previous')}
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={audiobooks.length < itemsPerPage}
-            className="bg-blue-500 text-white py-2 px-4 rounded-r-md hover:bg-blue-600 disabled:bg-blue-300 disabled:text-gray-400"
-          >
-            {t('Next')}
-          </button>
-        </div>
+      <div className="flex justify-between mt-8">
+        <button
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+          className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        >
+          {t('Previous')}
+        </button>
+        <button
+          onClick={handleNext}
+          disabled={audiobooks.length < itemsPerPage}
+          className="bg-gray-300 text-gray-600 rounded px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        >
+          {t('Next')}
+        </button>
       </div>
     </div>
   );

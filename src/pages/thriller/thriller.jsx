@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp'; // Ensure you have @mui/icons-material installed
-
+import { useTranslation } from 'react-i18next';
 const Thriller = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('thriller');
@@ -10,7 +10,7 @@ const Thriller = () => {
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-
+  const { t } = useTranslation();
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}&key=AIzaSyCJbUF_JRiOk9R6abyiAZ3QddT6TQ_LAO0`
@@ -44,9 +44,8 @@ const Thriller = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-6">
-      <h1 className="text-4xl font-extrabold mb-4 text-center">Thriller Books</h1>
       <p className="text-lg text-gray-700 mb-6 text-center">
-        Discover the best thriller books that will keep you on the edge of your seat!
+      {t('Thriller Details')}
       </p>
 
       <form onSubmit={getSearch} className="flex justify-center mb-8">

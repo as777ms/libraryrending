@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import InfoSharpIcon from '@mui/icons-material/InfoSharp';
-
+import { useTranslation } from 'react-i18next';
 const Historicalfiction = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState('Historicalfiction');
@@ -10,7 +10,7 @@ const Historicalfiction = () => {
   const [term, setTerm] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-
+  const { t } = useTranslation();
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=40&startIndex=${(currentPage - 1) * itemsPerPage}&key=AIzaSyCJbUF_JRiOk9R6abyiAZ3QddT6TQ_LAO0`
@@ -45,25 +45,8 @@ const Historicalfiction = () => {
   return (
     <div className="max-w-5xl mx-auto">
       <h1 className="text-4xl font-extrabold mb-4 text-center">
-        Новые книги на сайте
+      {t('View Historicalfic')}
       </h1>
-      <p className="text-lg text-gray-700 mb-6 text-center">
-        Откройте для себя 50 новейших книг, добавленных на наш сайт!
-      </p>
-
-      <p className="text-lg text-gray-700 leading-relaxed mb-8">
-        В этом разделе вы найдете свежие поступления нашей электронной библиотеки. Мы постоянно обновляем нашу коллекцию, 
-        чтобы предложить вам самые актуальные новинки литературного мира. Независимо от того, интересуетесь ли вы художественной 
-        литературой, нон-фикшеном, биографиями или поэзией – здесь вы найдете что-то по душе.
-      </p>
-
-      <p className="text-lg text-gray-700 leading-relaxed mt-5">
-        Читайте онлайн или скачивайте книги, чтобы наслаждаться ими на вашем устройстве в любое удобное время, даже без подключения к интернету.
-      </p>
-
-      <p className="text-lg text-gray-700 leading-relaxed mt-5">
-        Установите наше мобильное приложение для удобного чтения на смартфоне или планшете. С нами вы всегда будете в курсе последних литературных тенденций и сможете открыть для себя новых авторов.
-      </p>
 
       <form onSubmit={getSearch} className="flex justify-center mb-8">
         <input

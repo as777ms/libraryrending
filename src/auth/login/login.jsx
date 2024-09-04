@@ -39,7 +39,7 @@ export default function Login() {
   return (
     <div>
       <div className='bgimgLogin'>
-        <h1>Welcome Back</h1>
+        <h1 className='' style={{color: "rgb(92, 166, 255)"}}>Welcome Back</h1>
         <form onSubmit={handleLogin}>
           <input
             type="text"
